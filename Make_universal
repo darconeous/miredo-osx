@@ -1,0 +1,90 @@
+#!/bin/sh
+
+rmkdir() {
+    DIRNAME=`dirname $1`;
+	[ "$DIRNAME" != "." ] && { [ -d "$DIRNAME" ] || rmkdir "$DIRNAME"; }
+	[ -d "$1" ] || mkdir "$1";
+}
+
+PREFIX='/usr'
+SYSCONF='/etc'
+
+
+BUILD_DIR=`pwd`/build
+MIREDO_SRC=`pwd`/miredo
+BUILD_X86=$BUILD_DIR/build_x86
+BUILD_PPC=$BUILD_DIR/build_ppc
+OUT_X86=$BUILD_DIR/out_x86
+OUT_PPC=$BUILD_DIR/out_ppc
+OUTDIR=$BUILD_DIR/out
+OUTPREFIX=$OUTDIR$PREFIX
+SYSCONF_FULL=$OUTDIR$SYSCONF
+
+CONFIG_FLAGS=""
+CONFIG_FLAGS="$CONFIG_FLAGS --enable-miredo-user=root"
+#CONFIG_FLAGS="$CONFIG_FLAGS --with-libiconv-prefix=/usr"
+CONFIG_FLAGS="$CONFIG_FLAGS --without-libiconv-prefix"
+CONFIG_FLAGS="$CONFIG_FLAGS --without-gettext"
+CONFIG_FLAGS="$CONFIG_FLAGS --with-libintl-prefix"
+CONFIG_FLAGS="$CONFIG_FLAGS --localstatedir=/var"
+CONFIG_FLAGS="$CONFIG_FLAGS --disable-shared"
+CONFIG_FLAGS="$CONFIG_FLAGS --enable-static"
+CONFIG_FLAGS="$CONFIG_FLAGS --disable-sample-conf"
+CONFIG_FLAGS="$CONFIG_FLAGS --prefix=$PREFIX"
+CONFIG_FLAGS="$CONFIG_FLAGS --sysconfdir=$SYSCONF"
+CONFIG_FLAGS="$CONFIG_FLAGS LDFLAGS="
+CONFIG_FLAGS="$CONFIG_FLAGS CPPFLAGS="
+CONFIG_FLAGS="$CONFIG_FLAGS gt_cv_func_gnugettext1_libintl=no"
+CONFIG_FLAGS="$CONFIG_FLAGS ac_cv_header_libintl_h=no"
+
+
+rm -fr $OUTDIR
+
+rmkdir $BUILD_X86
+( cd $BUILD_X86 && $MIREDO_SRC/configure $CONFIG_FLAGS CFLAGS="-arch i386 -O2"
+ ) || exit 1
+make -C $BUILD_X86 clean
+make -C $BUILD_X86 -j 2 || exit 1
+make -C $BUILD_X86 install prefix=$OUT_X86 || exit 1
+
+rmkdir $BUILD_PPC
+( cd $BUILD_PPC && $MIREDO_SRC/configure $CONFIG_FLAGS CFLAGS="-arch ppc -O2"
+ ) || exit 1
+
+make -C $BUILD_PPC clean
+make -C $BUILD_PPC -j 2 || exit 1
+make -C $BUILD_PPC install prefix=$OUT_PPC || exit 1
+
+rmkdir $OUTPREFIX
+rmkdir $OUTDIR/Library/LaunchDaemons
+
+pushd $OUT_X86
+for filename in `find .` ; do {
+	rmkdir $OUTPREFIX/`dirname $filename`
+	[ -d $filename ] ||
+	if [ -x $filename ]  ; then {
+		lipo -create $filename $OUT_PPC/$filename -output $OUTPREFIX/$filename
+	} ; else {
+		cp $filename $OUTPREFIX/$filename
+	} ; fi
+} ; done
+popd
+
+cp misc/miredo.conf $SYSCONF_FULL/miredo.conf
+cp misc/miredo.plist $OUTDIR/Library/LaunchDaemons/miredo.plist
+
+UNINST_SCRIPT_DIR=$OUTDIR/Applications/Utilities
+UNINST_SCRIPT=$UNINST_SCRIPT_DIR/uninstall-miredo.command
+FILES=`cd $OUTDIR ; find . `
+echo "Making uninstall script. . ."
+rmkdir $UNINST_SCRIPT_DIR
+echo "#!/bin/sh" > $UNINST_SCRIPT
+echo "cd /" >> $UNINST_SCRIPT
+echo "sudo launchctl unload /Library/LaunchDaemons/miredo.plist" >> $UNINST_SCRIPT
+for FILE in $FILES ; do {
+	( cd $OUTDIR && [ -d $FILE ] ) && continue
+	echo "sudo rm $FILE" >> $UNINST_SCRIPT
+} ; done ;
+echo "sudo rm $UNINST_SCRIPT" >> $UNINST_SCRIPT
+chmod +x $UNINST_SCRIPT
+

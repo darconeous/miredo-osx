@@ -1,0 +1,6 @@
+#!/bin/sh
+
+
+sudo chown root:wheel /Library/LaunchDaemons/miredo.plist /usr/sbin/miredo /usr/etc/miredo.conf
+sudo launchctl load /Library/LaunchDaemons/miredo.plist
+

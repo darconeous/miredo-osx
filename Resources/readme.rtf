@@ -1,0 +1,48 @@
+{\rtf1\mac\ansicpg10000\cocoartf824\cocoasubrtf420
+{\fonttbl\f0\fnil\fcharset77 HelveticaNeue-Bold;\f1\fnil\fcharset77 HelveticaNeue;\f2\fnil\fcharset77 HelveticaNeue-Italic;
+}
+{\colortbl;\red255\green255\blue255;\red221\green32\blue32;\red232\green129\blue44;\red0\green34\blue242;
+}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc2\leveljcn2\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid0\'02\'05.;}{\levelnumbers\'01;}}{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc2\leveljcn2\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid0\'02\'05.;}{\levelnumbers\'01;}}{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sa360\qc
+
+\f0\b\fs56 \cf2 Miredo : Teredo IPv6 tunneling for Linux and BSD\
+\pard\pardeftab720\sa340\qc
+
+\fs42 \cf3 Introduction\
+\pard\pardeftab720\li280\ri1000\sa280\qj
+
+\fs28 \cf0 Miredo
+\f1\b0  is an open-source implementation of the {\field{\*\fldinst{HYPERLINK "http://www.remlab.net/miredo/doc/rfc4380.txt.gz"}}{\fldrslt \cf4 \ul \ulc4 Teredo: Tunneling IPv6 over UDP through NATs}} Internet proposed standard (RFC\'ca4380), targetting the Linux kernel and BSD operating systems. The purpose of Teredo IPv6 tunneling is to provide IPv6 connectivity to users behind NAT devices, such as most broadband routers, most of which do not support IPv6.\
+
+\f0\b Miredo
+\f1\b0  was originally developed, and is actively maintained by {\field{\*\fldinst{HYPERLINK "http://www.remlab.net/"}}{\fldrslt \cf4 \ul \ulc4 R\'8emi\'caDenis-Courmont}} as a volunteer project. It includes all the components of the Teredo architecture\'ca:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\ql\qnatural
+\ls1\ilvl0\cf0 {\listtext	\'a5	}a Teredo client (as Microsoft Windows XP SP2),\
+{\listtext	\'a5	}a stand-alone Teredo relay (as {\field{\*\fldinst{HYPERLINK "http://www-rp.lip6.fr/teredo/"}}{\fldrslt \cf4 \ul \ulc4 ng_teredo}}),\
+{\listtext	\'a5	}a Teredo server.\
+\pard\pardeftab720\li280\ri1000\sa280\qj
+\cf0 It is currently distributed under the terms of the {\field{\*\fldinst{HYPERLINK "http://www.gnu.org/copyleft/gpl.html"}}{\fldrslt \cf4 \ul \ulc4 GNU General Public License}}, the most widely used open-source software license.\
+
+\f0\b Miredo
+\f1\b0  runs on the 
+\f0\b GNU/{\field{\*\fldinst{HYPERLINK "http://www.kernel.org/"}}{\fldrslt \cf4 \ul \ulc4 Linux}}
+\f1\b0  kernel and the main open-source BSDs. It runs entirely in 
+\f2\i userland
+\f1\i0 , so that:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\ql\qnatural
+\ls2\ilvl0\cf0 {\listtext	\'a5	}No kernel patching is required.\
+{\listtext	\'a5	}It is very portable across POSIX-like kernels. Support for further kernels can easily be added.\
+{\listtext	\'a5	}It does not waste kernel memory. Stress tests showed that Miredo should be able to handle as many as 1 million simultaneously peers on a standard PC.\
+{\listtext	\'a5	}It cannot crash the whole system if a would-be bug triggers.\
+{\listtext	\'a5	}It can run with very limited privileges, so that the whole system is not compromised in case of would-be vulnerability.\
+{\listtext	\'a5	}The host kernel needs not be distributued under the terms of the GPL.\
+\pard\pardeftab720\li280\ri1000\sa280\qj
+\cf0 Miredo is also meant to interoperate with the Teredo tunnel driver which is included in Microsoft Windows XP (as of Service Pack 2, or within the 
+\f2\i Advanced Networking Pack
+\f1\i0 ), 2003, and supposedly Vista.\
+For more informations on the Teredo technology, you should refer to the {\field{\*\fldinst{HYPERLINK "http://en.wikipedia.org/wiki/Teredo_tunneling"}}{\fldrslt \cf4 \ul \ulc4 Wikipedia article}} and the {\field{\*\fldinst{HYPERLINK "http://www.microsoft.com/technet/prodtechnol/winxppro/maintain/teredo.mspx"}}{\fldrslt \cf4 \ul \ulc4 Microsoft IPv6\'ca: Teredo overview}}.}

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Stop miredo if it is running
+[ -f /System/Library/LaunchDaemons/miredo.plist ] && (
+	launchctl unload /System/Library/LaunchDaemons/miredo.plist
+	rm /System/Library/LaunchDaemons/miredo.plist
+)
+
+[ -f /Library/LaunchDaemons/miredo.plist ] && (
+	launchctl unload /Library/LaunchDaemons/miredo.plist
+	rm /Library/LaunchDaemons/miredo.plist
+)
+
+true;

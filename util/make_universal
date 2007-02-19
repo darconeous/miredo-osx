@@ -1,0 +1,24 @@
+#!/bin/sh
+
+rmkdir() {
+    DIRNAME=`dirname $1`;
+	[ "$DIRNAME" != "." ] && { [ -d "$DIRNAME" ] || rmkdir "$DIRNAME"; }
+	[ -d "$1" ] || mkdir "$1";
+}
+
+OUT_DIR=$1
+IN_A_DIR=$2
+IN_B_DIR=$3
+
+pushd $IN_A_DIR
+for filename in `find .` ; do {
+	rmkdir $OUT_DIR/`dirname $filename`
+	[ -d $filename ] ||
+	if [ -x $filename ]  ; then {
+		lipo -create $filename $IN_B_DIR/$filename -output $OUT_DIR/$filename || cp $filename $OUT_DIR/$filename
+	} ; else {
+		cp $filename $OUT_DIR/$filename
+	} ; fi
+} ; done
+popd
+

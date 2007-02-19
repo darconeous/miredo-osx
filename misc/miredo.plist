@@ -13,7 +13,7 @@
             <string>/usr/sbin/miredo</string>
             <string>--foreground</string>
             <string>-c</string>
-            <string>/usr/etc/miredo.conf</string>
+            <string>/etc/miredo.conf</string>
     </array>
     <key>ServiceIPC</key>
     <false/>

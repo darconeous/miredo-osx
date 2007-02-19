@@ -2,13 +2,29 @@
 
 # Stop miredo if it is running
 [ -f /System/Library/LaunchDaemons/miredo.plist ] && (
-	launchctl unload /System/Library/LaunchDaemons/miredo.plist
-	rm /System/Library/LaunchDaemons/miredo.plist
+	sudo launchctl unload /System/Library/LaunchDaemons/miredo.plist
+	sudo rm /System/Library/LaunchDaemons/miredo.plist
+	sleep 2
 )
 
 [ -f /Library/LaunchDaemons/miredo.plist ] && (
-	launchctl unload /Library/LaunchDaemons/miredo.plist
-	rm /Library/LaunchDaemons/miredo.plist
+	sudo launchctl unload /Library/LaunchDaemons/miredo.plist
+	sudo rm /Library/LaunchDaemons/miredo.plist
+	sleep 2
 )
+
+[ -f /Library/StartupItems/tun/tun ] && (
+	sudo /Library/StartupItems/tun/tun stop
+)
+
+[ -f /Library/StartupItems/tap/tap ] && (
+	sudo /Library/StartupItems/tap/tap stop
+)
+
+
+[ -f /Applications/Utilities/uninstall-miredo.command ] && (
+	/Applications/Utilities/uninstall-miredo.command
+)
+
 
 true;

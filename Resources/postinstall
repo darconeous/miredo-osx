@@ -1,6 +1,22 @@
 #!/bin/sh
 
+set
 
-sudo chown root:wheel /Library/LaunchDaemons/miredo.plist /usr/sbin/miredo /usr/etc/miredo.conf
+[ -f /etc/miredo.conf.sample ] && (
+	[ -f /etc/miredo.conf ] || cp /etc/miredo.conf.sample /etc/miredo.conf
+)
+
+sudo chown -R root:wheel /Library/LaunchDaemons/miredo.plist /usr/sbin/miredo /etc/miredo.conf /Library/Extensions/tun.kext /Library/Extensions/tap.kext /Library/StartupItems/tun /Library/StartupItems/tap /Library/PreferencePanes /usr/bin/teredo-mire /usr/sbin/isatapd /usr/sbin/miredo-server
+
+[ -d /etc/ppp ] || mkdir /etc/ppp
+[ -f /etc/ppp/ip-up ] || ( echo '#!/bin/sh' >> /etc/ppp/ip-up ; )
+[ -f /etc/ppp/ip-down ] || ( echo '#!/bin/sh' >> /etc/ppp/ip-down ; )
+
+/usr/bin/grep miredo /etc/ppp/ip-up -q || echo "killall miredo # Reset miredo" >> /etc/ppp/ip-up
+/usr/bin/grep miredo /etc/ppp/ip-down -q || echo "killall miredo # Reset miredo" >> /etc/ppp/ip-down
+
+sudo /Library/StartupItems/tun/tun start
+sudo /Library/StartupItems/tap/tap start
+sleep 1
 sudo launchctl load /Library/LaunchDaemons/miredo.plist
 

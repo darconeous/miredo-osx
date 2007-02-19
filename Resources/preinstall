@@ -4,14 +4,18 @@
 [ -f /System/Library/LaunchDaemons/miredo.plist ] && (
 	sudo launchctl unload /System/Library/LaunchDaemons/miredo.plist
 	sudo rm /System/Library/LaunchDaemons/miredo.plist
+	sudo killall miredo
 	sleep 2
 )
 
 [ -f /Library/LaunchDaemons/miredo.plist ] && (
 	sudo launchctl unload /Library/LaunchDaemons/miredo.plist
 	sudo rm /Library/LaunchDaemons/miredo.plist
+	sudo killall miredo
 	sleep 2
 )
+
+sudo killall -9 miredo
 
 [ -f /Library/StartupItems/tun/tun ] && (
 	sudo /Library/StartupItems/tun/tun stop

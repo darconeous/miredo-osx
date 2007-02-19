@@ -1,0 +1,9 @@
+#!/bin/sh
+
+rmkdir() {
+    DIRNAME=`dirname $1`;
+	[ "$DIRNAME" != "." ] && { [ -d "$DIRNAME" ] || rmkdir "$DIRNAME"; }
+	[ -d "$1" ] || mkdir "$1";
+}
+
+rmkdir $1

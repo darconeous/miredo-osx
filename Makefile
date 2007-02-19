@@ -68,13 +68,13 @@ XCODEBUILD=/usr/bin/xcodebuild
 
 .PHONY: all miredo package clean mrproper tuntap libjudy uninst-script default pref-pane
 
-default: tuntap miredo pref-pane
+default: tuntap miredo
 
-all: tuntap miredo pref-pane uninst-script package
+all: tuntap miredo uninst-script package
 
 uninst-script: $(OUT_DIR)$(UNINST_SCRIPT)
 
-$(OUT_DIR)$(UNINST_SCRIPT): miredo tuntap pref-pane
+$(OUT_DIR)$(UNINST_SCRIPT): miredo tuntap 
 	$(RMKDIR) $(OUT_DIR)$(UNINST_SCRIPT_DIR)
 	echo "#!/bin/sh" > $(OUT_DIR)$(UNINST_SCRIPT)
 	echo "cd /" >> $(OUT_DIR)$(UNINST_SCRIPT)
@@ -101,7 +101,7 @@ tuntap:
 
 package: miredo.pkg
 
-miredo.pkg: tuntap miredo pref-pane uninst-script
+miredo.pkg: tuntap miredo  uninst-script
 	$(PACKAGEMAKER) -build -p $@ -proj miredo.pmproj 
 
 

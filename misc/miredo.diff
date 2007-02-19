@@ -1,0 +1,92 @@
+Index: src/relayd.c
+===================================================================
+--- src/relayd.c	(revision 1899)
++++ src/relayd.c	(working copy)
+@@ -67,6 +67,8 @@
+ #include "miredo.h"
+ #include "conf.h"
+ 
++static const char* command_if_up;
++static const char* command_if_down;
+ 
+ static int relay_diagnose (void)
+ {
+@@ -246,8 +248,17 @@
+ 		        str, (unsigned)mtu);
+ 
+ 	assert (data != NULL);
+-
++	
+ 	miredo_configure_tunnel (((miredo_tunnel *)data)->priv_fd, addr, mtu);
++	
++	if(command_if_up)
++	{
++		int ret;
++		syslog (LOG_NOTICE, _("Executing \"%s\"."), command_if_up);
++		if((ret=system(command_if_up))) {
++			syslog (LOG_NOTICE, _("\"%s\" returned error code %d."), command_if_up, ret);
++		}
++	}
+ }
+ 
+ 
+@@ -262,6 +273,14 @@
+ 	miredo_configure_tunnel (((miredo_tunnel *)data)->priv_fd, &in6addr_any,
+ 	                         1280);
+ 	syslog (LOG_NOTICE, _("Teredo pseudo-tunnel stopped"));
++	if(command_if_down)
++	{
++		int ret;
++		syslog (LOG_NOTICE, _("Executing \"%s\"."), command_if_down);
++		if((ret=system(command_if_down))) {
++			syslog (LOG_NOTICE, _("\"%s\" returned error code %d."), command_if_down, ret);
++		}
++	}
+ }
+ 
+ 
+@@ -426,6 +445,9 @@
+ 		syslog (LOG_ALERT, _("Fatal configuration error"));
+ 		return -2;
+ 	}
++	
++	command_if_up = miredo_conf_get (conf, "CommandUp", NULL);
++	command_if_down = miredo_conf_get (conf, "CommandDown", NULL);
+ 
+ #ifdef MIREDO_TEREDO_CLIENT
+ 	const char *server_name2 = NULL;
+Index: src/conf.c
+===================================================================
+--- src/conf.c	(revision 1899)
++++ src/conf.c	(working copy)
+@@ -238,6 +238,7 @@
+ 	while (fgets (lbuf, sizeof (lbuf), stream) != NULL)
+ 	{
+ 		size_t len = strlen (lbuf) - 1;
++		size_t start_of_value;
+ 		line++;
+ 
+ 		if (lbuf[len] != '\n')
+@@ -252,10 +253,20 @@
+ 
+ 		lbuf[len] = '\0';
+ 		char nbuf[32], vbuf[1024];
+-
+-		switch (sscanf (lbuf, " %31s %1023s", nbuf, vbuf))
++		
++		// Remove comments
++		for(char* c=lbuf;*c;++c)
++			if(*c=='#') {
++				*c = 0;
++				break;
++			}
++		
++		switch (sscanf (lbuf, " %31s %n%1023s", nbuf,&start_of_value, vbuf))
+ 		{
+ 			case 2:
++			case 3:
++				strncpy(vbuf,lbuf+start_of_value,sizeof(vbuf));
++				
+ 				if ((*nbuf != '#') // comment
+ 				 && !miredo_conf_set (conf, nbuf, vbuf, line))
+ 					return false;

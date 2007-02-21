@@ -38,7 +38,8 @@ JUDY_BUILD_X86_DIR=$(BUILD_DIR)/judy_build_x86
 JUDY_BUILD_PPC_DIR=$(BUILD_DIR)/judy_build_ppc
 JUDY_OUT_X86_DIR=$(BUILD_DIR)/judy_out_x86
 JUDY_OUT_PPC_DIR=$(BUILD_DIR)/judy_out_ppc
-JUDY_CONFIG_FLAGS=""
+JUDY_CONFIG_FLAGS+="--disable-shared"
+JUDY_CONFIG_FLAGS+="--enable-static"
 
 ## Uninstaller
 UNINST_SCRIPT_DIR=/Applications/Utilities
@@ -79,10 +80,16 @@ $(OUT_DIR)$(UNINST_SCRIPT): miredo tuntap
 	echo "#!/bin/sh" > $(OUT_DIR)$(UNINST_SCRIPT)
 	echo "cd /" >> $(OUT_DIR)$(UNINST_SCRIPT)
 	echo "sudo launchctl unload /Library/LaunchDaemons/miredo.plist" >> $(OUT_DIR)$(UNINST_SCRIPT)
+	echo "sudo killall -9 miredo" >> $(OUT_DIR)$(UNINST_SCRIPT)
+	echo "sudo /Library/StartupItems/tun/tun stop" >> $(OUT_DIR)$(UNINST_SCRIPT)
+	echo "sudo /Library/StartupItems/tap/tap stop" >> $(OUT_DIR)$(UNINST_SCRIPT)
 	for FILE in `cd $(OUT_DIR) ; find . ` ; do { \
 		( cd $(OUT_DIR) && [ -d $$FILE ] ) && continue ; \
+		( echo $(OUT_DIR) | grep -q ".svn" ) && continue; \
 		echo "sudo rm $$FILE" >> $(OUT_DIR)$(UNINST_SCRIPT) ; \
 	} ; done ;
+	echo "sudo rm -fr /Library/StartupItems/tun" >> $(OUT_DIR)$(UNINST_SCRIPT)
+	echo "sudo rm -fr /Library/StartupItems/tap" >> $(OUT_DIR)$(UNINST_SCRIPT)
 	echo "sudo rm $(UNINST_SCRIPT)" >> $(OUT_DIR)$(UNINST_SCRIPT)
 	chmod +x $(OUT_DIR)$(UNINST_SCRIPT)
 
@@ -201,11 +208,17 @@ $(MIREDO_PREF_OUT_DIR)/Miredo.prefPane: $(MIREDO_PREF_SRC_DIR)/build/Release/Mir
 
 
 
+miredo.pkg.tar.gz: miredo.pkg
+	tar cvzf miredo.pkg.tar.gz miredo.pkg
 
+miredo.pkg.zip: miredo.pkg
+	zip -r miredo.pkg.zip miredo.pkg
 	
 clean:
 	$(RMDIR) $(BUILD_DIR)
 	$(RMDIR) miredo.pkg
+	$(RM) miredo.pkg.tar.gz
+	$(RM) miredo.pkg.zip
 	$(MAKE) -C $(TUNTAP_DIR) clean
 
 mrproper: clean

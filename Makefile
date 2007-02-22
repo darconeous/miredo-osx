@@ -1,5 +1,7 @@
 
 
+TARNAME=miredo-osx-prerelease1
+
 ##### Path Variables
 PREFIX=/usr
 SYSCONF=/etc
@@ -69,7 +71,7 @@ XCODEBUILD=/usr/bin/xcodebuild
 
 .PHONY: all miredo package clean mrproper tuntap libjudy uninst-script default pref-pane
 
-default: tuntap miredo
+default: package
 
 all: tuntap miredo uninst-script package
 
@@ -94,9 +96,6 @@ $(OUT_DIR)$(UNINST_SCRIPT): miredo tuntap
 	echo "sudo rm $(UNINST_SCRIPT)" >> $(OUT_DIR)$(UNINST_SCRIPT)
 	chmod +x $(OUT_DIR)$(UNINST_SCRIPT)
 
-#miredo: $(MIREDO_DIR)/configure libjudy
-#	./Make_universal
-
 tuntap:
 	$(MAKE) -C $(TUNTAP_DIR) tap.kext tun.kext
 	-$(RMKDIR) $(BUILD_DIR)
@@ -107,10 +106,6 @@ tuntap:
 	$(CP) -fr $(TUNTAP_DIR)/startup_item/tap $(OUT_DIR)/Library/StartupItems
 	$(CP) -fr $(TUNTAP_DIR)/startup_item/tun $(OUT_DIR)/Library/StartupItems
 
-package: miredo.pkg
-
-miredo.pkg: tuntap miredo  uninst-script
-	$(PACKAGEMAKER) -build -p $@ -proj miredo.pmproj 
 
 
 
@@ -208,22 +203,26 @@ $(MIREDO_PREF_OUT_DIR)/Miredo.prefPane: $(MIREDO_PREF_SRC_DIR)/build/Release/Mir
 
 
 
+package: zip tarball
 
-miredo.pkg.tar.gz: miredo.pkg
-	tar cvzf miredo.pkg.tar.gz miredo.pkg
+$(TARNAME).pkg: tuntap miredo  uninst-script
+	$(PACKAGEMAKER) -build -p $@ -proj miredo.pmproj 
 
-miredo.pkg.zip: miredo.pkg
-	zip -r miredo.pkg.zip miredo.pkg
+$(TARNAME).pkg.tar.gz: $(TARNAME).pkg
+	tar cvzf $(TARNAME).pkg.tar.gz $(TARNAME).pkg
 
-zip: miredo.pkg.zip
+$(TARNAME).pkg.zip: $(TARNAME).pkg
+	zip -r $(TARNAME).pkg.zip $(TARNAME).pkg
 
-tarball: miredo.pkg.tar.gz
+zip: $(TARNAME).pkg.zip
+
+tarball: $(TARNAME).pkg.tar.gz
 	
 clean:
 	$(RMDIR) $(BUILD_DIR)
-	$(RMDIR) miredo.pkg
-	$(RM) miredo.pkg.tar.gz
-	$(RM) miredo.pkg.zip
+	$(RMDIR) $(TARNAME).pkg
+	$(RM) $(TARNAME).pkg.tar.gz
+	$(RM) $(TARNAME).pkg.zip
 	$(MAKE) -C $(TUNTAP_DIR) clean
 
 mrproper: clean

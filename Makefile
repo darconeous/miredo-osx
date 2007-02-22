@@ -85,11 +85,12 @@ $(OUT_DIR)$(UNINST_SCRIPT): miredo tuntap
 	echo "sudo /Library/StartupItems/tap/tap stop" >> $(OUT_DIR)$(UNINST_SCRIPT)
 	for FILE in `cd $(OUT_DIR) ; find . ` ; do { \
 		( cd $(OUT_DIR) && [ -d $$FILE ] ) && continue ; \
-		( echo $(OUT_DIR) | grep -q ".svn" ) && continue; \
-		echo "sudo rm $$FILE" >> $(OUT_DIR)$(UNINST_SCRIPT) ; \
+		echo "sudo rm $$FILE" | grep -v .svn >> $(OUT_DIR)$(UNINST_SCRIPT) ; \
 	} ; done ;
 	echo "sudo rm -fr /Library/StartupItems/tun" >> $(OUT_DIR)$(UNINST_SCRIPT)
 	echo "sudo rm -fr /Library/StartupItems/tap" >> $(OUT_DIR)$(UNINST_SCRIPT)
+	echo "sudo rm -fr /Library/Extensions/tap.kext" >> $(OUT_DIR)$(UNINST_SCRIPT)
+	echo "sudo rm -fr /Library/Extensions/tun.kext" >> $(OUT_DIR)$(UNINST_SCRIPT)
 	echo "sudo rm $(UNINST_SCRIPT)" >> $(OUT_DIR)$(UNINST_SCRIPT)
 	chmod +x $(OUT_DIR)$(UNINST_SCRIPT)
 
@@ -213,6 +214,10 @@ miredo.pkg.tar.gz: miredo.pkg
 
 miredo.pkg.zip: miredo.pkg
 	zip -r miredo.pkg.zip miredo.pkg
+
+zip: miredo.pkg.zip
+
+tarball: miredo.pkg.tar.gz
 	
 clean:
 	$(RMDIR) $(BUILD_DIR)

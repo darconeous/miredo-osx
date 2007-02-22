@@ -158,6 +158,8 @@ $(JUDY_SRC_DIR)/configure: $(JUDY_SRC_DIR)/configure.ac
 	make -C $(JUDY_SRC_DIR)
 	make -C $(JUDY_SRC_DIR) distclean
 
+libjudy-bootstrap: $(JUDY_SRC_DIR)/configure
+
 libjudy: $(JUDY_OUT_X86_DIR)/lib/libJudy.a $(JUDY_OUT_PPC_DIR)/lib/libJudy.a
 
 libjudy-x86-conf: $(JUDY_BUILD_X86_DIR)/config.status

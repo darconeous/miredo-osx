@@ -61,6 +61,10 @@ make libjudy
 	Builds both x86 and ppc versions of libjudy
 	(static-link only)
 
+make libjudy-bootstrap
+	Bootstraps libjudy. You shouldn't have to use this
+	target.
+
 make mrproper
 	A more complete version of the 'clean' target. Rolls
 	back any autoconf stuff in the packages. Don't do this

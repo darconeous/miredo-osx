@@ -3,6 +3,23 @@
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             ACTIONS = {apply = id; revert = id; }; 
+            CLASS = MiredoPref; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                applyButton = NSButton; 
+                bindAddress = NSTextField; 
+                bindPort = NSTextField; 
+                comboAuthButton = SFAuthorizationView; 
+                currentAddress = NSTextField; 
+                relayType = NSPopUpButton; 
+                revertButton = NSButton; 
+                serverAddress = NSTextField; 
+                teredoEnabled = NSButton; 
+            }; 
+            SUPERCLASS = NSPreferencePane; 
+        }, 
+        {
+            ACTIONS = {apply = id; revert = id; }; 
             CLASS = MiredoPrefController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
@@ -14,6 +31,7 @@
             }; 
             SUPERCLASS = NSResponder; 
         }, 
+        {CLASS = NSObject; LANGUAGE = ObjC; }, 
         {
             CLASS = NSPreferencePane; 
             LANGUAGE = ObjC; 
@@ -24,7 +42,9 @@
                 "_window" = id; 
             }; 
             SUPERCLASS = NSObject; 
-        }
+        }, 
+        {CLASS = SFAuthorization; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = SFAuthorizationView; LANGUAGE = ObjC; SUPERCLASS = NSView; }
     ); 
     IBVersion = 1; 
 }

@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.apple.prefpanel</string>
+	<string>com.deepdarc.miredo</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -25,9 +25,9 @@
 	<key>NSMainNibFile</key>
 	<string>MiredoPref</string>
 	<key>NSPrefPaneIconFile</key>
-	<string>MiredoPreferencePanePref.tiff</string>
+	<string>MiredoPref.tiff</string>
 	<key>NSPrefPaneIconLabel</key>
-	<string>MiredoPreferencePane</string>
+	<string>Miredo</string>
 	<key>NSPrincipalClass</key>
 	<string>MiredoPref</string>
 </dict>

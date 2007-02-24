@@ -1,0 +1,14 @@
+Index: libteredo/maintain.c
+===================================================================
+--- libteredo/maintain.c	(révision 1813)
++++ libteredo/maintain.c	(copie de travail)
+@@ -428,6 +428,9 @@
+ 		{
+ 			count = 0;
+ 
++			if (state == PROBE_SYMMETRIC)
++				c_state->addr.teredo.client_port = newaddr.teredo.client_port;
++
+ 			if ((c_state->addr.teredo.client_port != newaddr.teredo.client_port)
+ 			 || (c_state->addr.teredo.client_ip != newaddr.teredo.client_ip))
+ 			{

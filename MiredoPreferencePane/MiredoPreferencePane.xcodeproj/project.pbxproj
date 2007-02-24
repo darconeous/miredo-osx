@@ -18,12 +18,28 @@
 		A623ABE00B89979300BA6ED4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A623ABDF0B89979300BA6ED4 /* Security.framework */; };
 		A623AC9F0B8AA2FC00BA6ED4 /* MiredoConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = A623AC9D0B8AA2FC00BA6ED4 /* MiredoConfig.h */; };
 		A623ACA00B8AA2FC00BA6ED4 /* MiredoConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A623AC9E0B8AA2FC00BA6ED4 /* MiredoConfig.m */; };
-		A623ADB90B8AE0EC00BA6ED4 /* PrivilegedOperations.c in Sources */ = {isa = PBXBuildFile; fileRef = A623ADB70B8AE0EC00BA6ED4 /* PrivilegedOperations.c */; };
-		A623ADBA0B8AE0EC00BA6ED4 /* PrivilegedOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = A623ADB80B8AE0EC00BA6ED4 /* PrivilegedOperations.h */; };
+		A68528050B8F929D00051A92 /* miredo-pref-tool.m in Sources */ = {isa = PBXBuildFile; fileRef = A623ADB30B8AE07500BA6ED4 /* miredo-pref-tool.m */; };
+		A68528160B8F946400051A92 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		A685284B0B8F946800051A92 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A623ABDF0B89979300BA6ED4 /* Security.framework */; };
+		A685285C0B8F950600051A92 /* miredo-pref-tool in Resources */ = {isa = PBXBuildFile; fileRef = A68528030B8F928B00051A92 /* miredo-pref-tool */; };
+		A68528810B8F95EB00051A92 /* installtool in Resources */ = {isa = PBXBuildFile; fileRef = A68528800B8F95EB00051A92 /* installtool */; };
+		A68528860B8F96A300051A92 /* PrivilegedOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = A68528840B8F96A300051A92 /* PrivilegedOperations.m */; };
+		A68528870B8F96A300051A92 /* PrivilegedOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = A68528850B8F96A300051A92 /* PrivilegedOperations.h */; };
+		A68529810B8FA26700051A92 /* MiredoConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A623AC9E0B8AA2FC00BA6ED4 /* MiredoConfig.m */; };
 		A69A3FFD0B88FC1200C72E19 /* inprogress.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A69A3FFA0B88FC1100C72E19 /* inprogress.tiff */; };
 		A69A3FFE0B88FC1200C72E19 /* failure.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A69A3FFB0B88FC1200C72E19 /* failure.tiff */; };
 		A69A3FFF0B88FC1200C72E19 /* success.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A69A3FFC0B88FC1200C72E19 /* success.tiff */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A68528530B8F94AF00051A92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A68528020B8F928B00051A92;
+			remoteInfo = "miredo-pref-tool";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -36,11 +52,11 @@
 		A623ABDF0B89979300BA6ED4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		A623AC9D0B8AA2FC00BA6ED4 /* MiredoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiredoConfig.h; sourceTree = "<group>"; };
 		A623AC9E0B8AA2FC00BA6ED4 /* MiredoConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiredoConfig.m; sourceTree = "<group>"; };
-		A623ADB10B8AE07500BA6ED4 /* ConfigurationAuthority.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ConfigurationAuthority.c; sourceTree = "<group>"; };
-		A623ADB20B8AE07500BA6ED4 /* ConfigurationAuthority.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationAuthority.h; sourceTree = "<group>"; };
 		A623ADB30B8AE07500BA6ED4 /* miredo-pref-tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "miredo-pref-tool.m"; sourceTree = "<group>"; };
-		A623ADB70B8AE0EC00BA6ED4 /* PrivilegedOperations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = PrivilegedOperations.c; sourceTree = "<group>"; };
-		A623ADB80B8AE0EC00BA6ED4 /* PrivilegedOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivilegedOperations.h; sourceTree = "<group>"; };
+		A68528030B8F928B00051A92 /* miredo-pref-tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "miredo-pref-tool"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A68528800B8F95EB00051A92 /* installtool */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = installtool; sourceTree = "<group>"; };
+		A68528840B8F96A300051A92 /* PrivilegedOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivilegedOperations.m; sourceTree = "<group>"; };
+		A68528850B8F96A300051A92 /* PrivilegedOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivilegedOperations.h; sourceTree = "<group>"; };
 		A69A3FFA0B88FC1100C72E19 /* inprogress.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = inprogress.tiff; sourceTree = "<group>"; };
 		A69A3FFB0B88FC1200C72E19 /* failure.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = failure.tiff; sourceTree = "<group>"; };
 		A69A3FFC0B88FC1200C72E19 /* success.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = success.tiff; sourceTree = "<group>"; };
@@ -62,12 +78,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A68528010B8F928B00051A92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A68528160B8F946400051A92 /* Cocoa.framework in Frameworks */,
+				A685284B0B8F946800051A92 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		089C166AFE841209C02AAC07 /* MiredoPreferencePane */ = {
 			isa = PBXGroup;
 			children = (
+				A68527FF0B8F926A00051A92 /* Tool Sources */,
 				08FB77AFFE84173DC02AAC07 /* Classes */,
 				32DBCFA10370C40200C91783 /* Other Sources */,
 				089C167CFE841241C02AAC07 /* Resources */,
@@ -92,6 +118,7 @@
 				A69A3FFA0B88FC1100C72E19 /* inprogress.tiff */,
 				A69A3FFB0B88FC1200C72E19 /* failure.tiff */,
 				A69A3FFC0B88FC1200C72E19 /* success.tiff */,
+				A68528800B8F95EB00051A92 /* installtool */,
 				8D202CF70486D31800D8A456 /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
 				F506C040013D9D8001CA16C8 /* MiredoPref.tiff */,
@@ -103,11 +130,6 @@
 		08FB77AFFE84173DC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				A623ADB70B8AE0EC00BA6ED4 /* PrivilegedOperations.c */,
-				A623ADB80B8AE0EC00BA6ED4 /* PrivilegedOperations.h */,
-				A623ADB10B8AE07500BA6ED4 /* ConfigurationAuthority.c */,
-				A623ADB20B8AE07500BA6ED4 /* ConfigurationAuthority.h */,
-				A623ADB30B8AE07500BA6ED4 /* miredo-pref-tool.m */,
 				F506C03C013D9D7901CA16C8 /* MiredoPref.h */,
 				F506C03D013D9D7901CA16C8 /* MiredoPref.m */,
 				A623AC9D0B8AA2FC00BA6ED4 /* MiredoConfig.h */,
@@ -139,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				8D202CF80486D31800D8A456 /* Miredo.prefPane */,
+				A68528030B8F928B00051A92 /* miredo-pref-tool */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,9 +169,19 @@
 		32DBCFA10370C40200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A68528840B8F96A300051A92 /* PrivilegedOperations.m */,
+				A68528850B8F96A300051A92 /* PrivilegedOperations.h */,
 				32DBCFA20370C41700C91783 /* Miredo_Prefix.pch */,
 			);
 			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		A68527FF0B8F926A00051A92 /* Tool Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A623ADB30B8AE07500BA6ED4 /* miredo-pref-tool.m */,
+			);
+			name = "Tool Sources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,7 +194,7 @@
 				8D202CEA0486D31800D8A456 /* Miredo_Prefix.pch in Headers */,
 				8D202CEB0486D31800D8A456 /* MiredoPref.h in Headers */,
 				A623AC9F0B8AA2FC00BA6ED4 /* MiredoConfig.h in Headers */,
-				A623ADBA0B8AE0EC00BA6ED4 /* PrivilegedOperations.h in Headers */,
+				A68528870B8F96A300051A92 /* PrivilegedOperations.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,12 +214,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				A68528540B8F94AF00051A92 /* PBXTargetDependency */,
 			);
 			name = "Miredo Preference Pane";
 			productInstallPath = "$(HOME)/Library/PreferencePanes";
 			productName = MiredoPreferencePane;
 			productReference = 8D202CF80486D31800D8A456 /* Miredo.prefPane */;
 			productType = "com.apple.product-type.bundle";
+		};
+		A68528020B8F928B00051A92 /* miredo-pref-tool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A68528060B8F92BB00051A92 /* Build configuration list for PBXNativeTarget "miredo-pref-tool" */;
+			buildPhases = (
+				A68528000B8F928B00051A92 /* Sources */,
+				A68528010B8F928B00051A92 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "miredo-pref-tool";
+			productName = "miredo-pref-tool";
+			productReference = A68528030B8F928B00051A92 /* miredo-pref-tool */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -199,6 +249,7 @@
 			projectDirPath = "";
 			targets = (
 				8D202CE80486D31800D8A456 /* Miredo Preference Pane */,
+				A68528020B8F928B00051A92 /* miredo-pref-tool */,
 			);
 		};
 /* End PBXProject section */
@@ -214,6 +265,8 @@
 				A69A3FFD0B88FC1200C72E19 /* inprogress.tiff in Resources */,
 				A69A3FFE0B88FC1200C72E19 /* failure.tiff in Resources */,
 				A69A3FFF0B88FC1200C72E19 /* success.tiff in Resources */,
+				A685285C0B8F950600051A92 /* miredo-pref-tool in Resources */,
+				A68528810B8F95EB00051A92 /* installtool in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,11 +289,28 @@
 			files = (
 				8D202CF10486D31800D8A456 /* MiredoPref.m in Sources */,
 				A623ACA00B8AA2FC00BA6ED4 /* MiredoConfig.m in Sources */,
-				A623ADB90B8AE0EC00BA6ED4 /* PrivilegedOperations.c in Sources */,
+				A68528860B8F96A300051A92 /* PrivilegedOperations.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A68528000B8F928B00051A92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A68528050B8F929D00051A92 /* miredo-pref-tool.m in Sources */,
+				A68529810B8FA26700051A92 /* MiredoConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A68528540B8F94AF00051A92 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A68528020B8F928B00051A92 /* miredo-pref-tool */;
+			targetProxy = A68528530B8F94AF00051A92 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C167DFE841241C02AAC07 /* InfoPlist.strings */ = {
@@ -304,6 +374,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
+				PRODUCT_NAME = "Miredo Preference Pane";
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Debug;
@@ -314,7 +385,38 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
+				PRODUCT_NAME = "Miredo Preference Pane";
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Release;
+		};
+		A68528070B8F92BB00051A92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = "$(HOME)/bin";
+				PREBINDING = NO;
+				PRODUCT_NAME = "miredo-pref-tool";
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		A68528080B8F92BB00051A92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = "$(HOME)/bin";
+				PREBINDING = NO;
+				PRODUCT_NAME = "miredo-pref-tool";
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -335,6 +437,15 @@
 			buildConfigurations = (
 				1DBD214D08BA80EA00186707 /* Debug */,
 				1DBD214E08BA80EA00186707 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A68528060B8F92BB00051A92 /* Build configuration list for PBXNativeTarget "miredo-pref-tool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A68528070B8F92BB00051A92 /* Debug */,
+				A68528080B8F92BB00051A92 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -22,6 +22,7 @@
 }
 - (IBAction)apply:(id)sender;
 - (IBAction)revert:(id)sender;
+- (IBAction)teredoToggle:(id)sender;
 - (void)enableControls;
 - (void)disableControls;
 - (void)updateApplyButtonState;

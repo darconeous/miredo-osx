@@ -12,26 +12,29 @@
 #include <AssertMacros.h>
 #include <CoreFoundation/CoreFoundation.h>
 #include <SystemConfiguration/SystemConfiguration.h>
+#include "PrivilegedOperations.h"
 
 #define DEFAULT_TEREDO_SERVER   @"teredo.remlab.net"
 
-static char* killall_command_path="/usr/bin/killall";
 
 @implementation MiredoPref
 
 - (void) mainViewDidLoad
 {
     AuthorizationItem		_rights[] = {
-        { kAuthorizationRightExecute, strlen(killall_command_path), killall_command_path, 0 },
-//        { "system.preferences" }
+//        { kAuthorizationRightExecute, strlen(killall_command_path), killall_command_path, 0 },
+//		kToolRights,
+        { "system.preferences" }
     };
     AuthorizationItemSet	rights = { sizeof(*_rights)/sizeof(_rights), _rights };
 
     [comboAuthButton setAuthorizationRights:&rights];
-    [comboAuthButton setFlags:kAuthorizationFlagInteractionAllowed|kAuthorizationFlagExtendRights];
+//    [comboAuthButton setFlags:kAuthorizationFlagInteractionAllowed|kAuthorizationFlagExtendRights];
     [comboAuthButton setDelegate:self];
     [comboAuthButton updateStatus:nil];
     [comboAuthButton setAutoupdate:YES];
+
+	EnsureToolInstalled();
 
     settings=[[NSMutableDictionary dictionaryWithCapacity:20] retain];
     [self readSettings];
@@ -104,9 +107,19 @@ static char* killall_command_path="/usr/bin/killall";
 }
 
 - (void)saveSettings {
-    NSError* error;
-    if(!MiredoConfigSave(@"/etc/miredo.conf",[self currentSettings],&error)) {
-        [[NSAlert alertWithError:error]
+    OSStatus err;
+	err=WriteMiredoConfiguration([[comboAuthButton authorization] authorizationRef],(CFDictionaryRef)[self currentSettings]);
+
+    if(err!=noErr) {
+        
+        
+        [   [NSAlert
+                alertWithError:[NSError
+                    errorWithDomain:NSOSStatusErrorDomain
+                    code:err
+                    userInfo:nil
+                ]        
+            ]
             beginSheetModalForWindow:[[self mainView] window]
             modalDelegate:self
             didEndSelector:nil
@@ -114,22 +127,16 @@ static char* killall_command_path="/usr/bin/killall";
         ];
     } else {
         [self restartMiredo];
-    }
+	}
+
     [self setSettings:MiredoConfigLoad(@"/etc/miredo.conf")];
     [self updateApplyButtonState];
 }
 
 - (void)restartMiredo {
 	OSStatus		err = noErr;
-    char *command_args[] = { "-9","miredo",NULL };
-    err = AuthorizationExecuteWithPrivileges(
-        [[comboAuthButton authorization] authorizationRef],
-        killall_command_path,
-//        kAuthorizationFlagDefaults|kAuthorizationFlagInteractionAllowed|kAuthorizationFlagExtendRights|kAuthorizationFlagPreAuthorize,
-        kAuthorizationFlagDefaults,
-        command_args,
-        (FILE**) NULL
-    );
+	err=MiredoRestart([[comboAuthButton authorization] authorizationRef]);
+
     if(err!=noErr) {
         
         
@@ -211,6 +218,40 @@ static char* killall_command_path="/usr/bin/killall";
         [relayType  selectItemWithTag:0];
     }
     
+}
+
+- (IBAction)teredoToggle:(id)sender {
+	OSStatus		err = noErr;
+
+	NSLog(@"teredoToggle");
+	
+	switch([teredoEnabled state]) {
+		case NSOnState:
+			err=MiredoStart([[comboAuthButton authorization] authorizationRef]);
+			break;
+		case NSOffState:
+			err=MiredoStop([[comboAuthButton authorization] authorizationRef]);
+			break;
+		default:
+			break;
+	}
+
+    if(err!=noErr) {
+        
+        
+        [   [NSAlert
+                alertWithError:[NSError
+                    errorWithDomain:NSOSStatusErrorDomain
+                    code:err
+                    userInfo:nil
+                ]        
+            ]
+            beginSheetModalForWindow:[[self mainView] window]
+            modalDelegate:self
+            didEndSelector:nil
+            contextInfo:NULL
+        ];
+    }
 }
 
 

@@ -1,6 +1,6 @@
 
 
-TARNAME=miredo-osx-prerelease1
+TARNAME=Miredo-OSX
 
 ##### Path Variables
 PREFIX=/usr
@@ -73,11 +73,11 @@ XCODEBUILD=/usr/bin/xcodebuild
 
 default: package
 
-all: tuntap miredo uninst-script package
+all: tuntap miredo pref-pane uninst-script package
 
 uninst-script: $(OUT_DIR)$(UNINST_SCRIPT)
 
-$(OUT_DIR)$(UNINST_SCRIPT): miredo tuntap 
+$(OUT_DIR)$(UNINST_SCRIPT): pref-pane miredo tuntap 
 	$(RMKDIR) $(OUT_DIR)$(UNINST_SCRIPT_DIR)
 	echo "#!/bin/sh" > $(OUT_DIR)$(UNINST_SCRIPT)
 	echo "cd /" >> $(OUT_DIR)$(UNINST_SCRIPT)
@@ -108,7 +108,11 @@ tuntap:
 
 
 
+miredo-patch:
+	cd $(MIREDO_DIR) && patch -p0 < $(MISC_DIR)/miredo.diff
+	cd $(MIREDO_DIR) && patch -p0 < $(MISC_DIR)/symmetric.diff
 
+bootstrap: $(JUDY_SRC_DIR)/configure $(MIREDO_DIR)/configure
 
 $(MIREDO_DIR)/configure: $(MIREDO_DIR)/configure.ac
 	cd $(MIREDO_DIR) && ./autogen.sh
@@ -207,7 +211,7 @@ $(MIREDO_PREF_OUT_DIR)/Miredo.prefPane: $(MIREDO_PREF_SRC_DIR)/build/Release/Mir
 
 package: zip tarball
 
-$(TARNAME).pkg: tuntap miredo  uninst-script
+$(TARNAME).pkg: tuntap miredo pref-pane uninst-script
 	$(PACKAGEMAKER) -build -p $@ -proj miredo.pmproj 
 
 $(TARNAME).pkg.tar.gz: $(TARNAME).pkg

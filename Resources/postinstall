@@ -2,6 +2,14 @@
 
 set
 
+[ -f /usr/etc/miredo.conf ] && (
+	[ -f /etc/miredo.conf ] || cp /usr/etc/miredo.conf /etc/miredo.conf
+)
+
+[ -f /usr/local/etc/miredo.conf ] && (
+	[ -f /etc/miredo.conf ] || cp /usr/local/etc/miredo.conf /etc/miredo.conf
+)
+
 [ -f /etc/miredo.conf.sample ] && (
 	[ -f /etc/miredo.conf ] || cp /etc/miredo.conf.sample /etc/miredo.conf
 )

@@ -2,7 +2,7 @@
     IBClasses = (
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
-            ACTIONS = {apply = id; revert = id; }; 
+            ACTIONS = {apply = id; revert = id; teredoToggle = id; }; 
             CLASS = MiredoPref; 
             LANGUAGE = ObjC; 
             OUTLETS = {

@@ -1,0 +1,55 @@
+#!/usr/bin/perl
+# Emacs settings: -*- tab-width: 4 -*-
+#
+# File: installtool
+# 
+# Create the miredo subdirectory.
+# Copy ARGV[0] to $dest and set owner and suid permissions.
+#
+# This script will be run as root by the AEWP trampoline.
+#
+
+use File::Temp qw/ :mktemp /;
+
+$dest_dir = "/Library/Application Support/Miredo";
+$dest = $dest_dir . "/miredo-pref-tool";
+
+$template = ".XXXXXX";
+
+# Perl seems to think this code is running setuid root, so it applies its security checks.
+# See <http://www.monster-submit.com/resources/docs/pod/perlsec.html>.
+# In fact this is NOT a setuid script. It is a normal unprivileged user-level script --
+# but it is run as root when properly authorized by a user with an admin password,
+# via the AuthorizationExecuteWithPrivileges() call.
+# We therefore have to do this trick pattern match to 'untaint' the source file specified in $ARGV[0].
+if ($ARGV[0] =~ /^(.+)$/) { $src = $1; }
+
+# Also clear $ENV{PATH} so we don't get "Insecure $ENV{PATH}" fatal errors
+$ENV{PATH} = "";
+
+if (! -d $dest_dir) {
+   $dest_tmp_dir = mkdtemp ($dest_dir . $template);
+   (chown 0, 80, $dest_tmp_dir) or cleanup_dir();
+   (chmod 0755, $dest_tmp_dir) or cleanup_dir();
+   (rename $dest_tmp_dir, $dest_dir) or cleanup_dir();
+}
+
+$dest_tmp = mktemp ($dest . $template);
+
+if ($src ne '') {
+   system ('/bin/cp', '-f', $src, $dest_tmp) and cleanup();
+   (chown 0, 80, $dest_tmp) or cleanup();
+   (chmod 04555, $dest_tmp) or cleanup();
+   (rename $dest_tmp, $dest) or cleanup();
+}
+exit (0);
+
+sub cleanup {
+   unlink $dest_tmp;
+   exit (1);
+}
+
+sub cleanup_dir {
+   unlink $dest_tmp_dir;
+   exit (1);
+}

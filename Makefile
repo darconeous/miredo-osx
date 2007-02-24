@@ -20,7 +20,8 @@ MIREDO_BUILD_X86_DIR=$(BUILD_DIR)/miredo_build_x86
 MIREDO_BUILD_PPC_DIR=$(BUILD_DIR)/miredo_build_ppc
 MIREDO_OUT_X86_DIR=$(BUILD_DIR)/miredo_out_x86
 MIREDO_OUT_PPC_DIR=$(BUILD_DIR)/miredo_out_ppc
-MIREDO_CONFIG_FLAGS+="--enable-miredo-user=root"
+#MIREDO_CONFIG_FLAGS+="--enable-miredo-user=root"
+MIREDO_CONFIG_FLAGS+="--enable-miredo-user=nobody"
 MIREDO_CONFIG_FLAGS+="--without-libiconv-prefix"
 MIREDO_CONFIG_FLAGS+="--without-gettext"
 MIREDO_CONFIG_FLAGS+="--without-libintl-prefix"
@@ -110,7 +111,6 @@ tuntap:
 
 miredo-patch:
 	cd $(MIREDO_DIR) && patch -p0 < $(MISC_DIR)/miredo.diff
-	cd $(MIREDO_DIR) && patch -p0 < $(MISC_DIR)/symmetric.diff
 
 bootstrap: $(JUDY_SRC_DIR)/configure $(MIREDO_DIR)/configure
 

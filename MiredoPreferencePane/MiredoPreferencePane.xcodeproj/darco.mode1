@@ -204,10 +204,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>A67131050B92BFD500FF94CF</string>
+						<string>A64518550B935E29009A4CDE</string>
 						<key>history</key>
 						<array>
-							<string>A67131030B92BFD500FF94CF</string>
+							<string>A67131050B92BFD500FF94CF</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -261,8 +261,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -315,8 +313,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>31</integer>
-									<integer>30</integer>
+									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -351,6 +348,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -368,7 +367,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>A67131000B92BFD500FF94CF</string>
+										<string>A64518520B935E29009A4CDE</string>
 										<key>history</key>
 										<array>
 											<string>A623AE3B0B8B63BC00BA6ED4</string>
@@ -378,7 +377,6 @@
 											<string>A69874650B8FB7EE00D51BC4</string>
 											<string>A69874660B8FB7EE00D51BC4</string>
 											<string>A69874A30B8FD6DD00D51BC4</string>
-											<string>A6BE23650B90FB7C0018CC3D</string>
 											<string>A6BE23690B90FB7C0018CC3D</string>
 											<string>A6BE237A0B90FCFB0018CC3D</string>
 											<string>A6BE237B0B90FCFB0018CC3D</string>
@@ -386,13 +384,14 @@
 											<string>A6BE240E0B91076E0018CC3D</string>
 											<string>A6BE24100B91076E0018CC3D</string>
 											<string>A6BE24120B91076E0018CC3D</string>
-											<string>A67130BE0B92B22200FF94CF</string>
 											<string>A67130DB0B92B44100FF94CF</string>
 											<string>A67130F30B92BFD500FF94CF</string>
 											<string>A67130F50B92BFD500FF94CF</string>
 											<string>A67130F70B92BFD500FF94CF</string>
 											<string>A67130F90B92BFD500FF94CF</string>
-											<string>A67130FA0B92BFD500FF94CF</string>
+											<string>A645184C0B935E29009A4CDE</string>
+											<string>A645184D0B935E29009A4CDE</string>
+											<string>A645184E0B935E29009A4CDE</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -413,26 +412,10 @@
 											<string>A6BE23EB0B91002E0018CC3D</string>
 											<string>A6BE241B0B91076E0018CC3D</string>
 											<string>A6BE241D0B91076E0018CC3D</string>
-											<string>A67130940B92B04700FF94CF</string>
-											<string>A67130950B92B04700FF94CF</string>
-											<string>A67130960B92B04700FF94CF</string>
-											<string>A67130970B92B04700FF94CF</string>
-											<string>A67130980B92B04700FF94CF</string>
-											<string>A67130990B92B04700FF94CF</string>
-											<string>A671309A0B92B04700FF94CF</string>
-											<string>A671309B0B92B04700FF94CF</string>
-											<string>A67130AF0B92B10300FF94CF</string>
-											<string>A67130B00B92B10300FF94CF</string>
-											<string>A67130C00B92B22200FF94CF</string>
-											<string>A67130C10B92B22200FF94CF</string>
-											<string>A67130DE0B92B44100FF94CF</string>
-											<string>A67130DF0B92B44100FF94CF</string>
-											<string>A67130E00B92B44100FF94CF</string>
-											<string>A67130E60B92B50200FF94CF</string>
-											<string>A67130FB0B92BFD500FF94CF</string>
 											<string>A67130FC0B92BFD500FF94CF</string>
-											<string>A67130FE0B92BFD500FF94CF</string>
-											<string>A67130FF0B92BFD500FF94CF</string>
+											<string>A645184F0B935E29009A4CDE</string>
+											<string>A64518500B935E29009A4CDE</string>
+											<string>A64518510B935E29009A4CDE</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -490,9 +473,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>A671309D0B92B04700FF94CF</string>
+				<string>A64518530B935E29009A4CDE</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>A671309E0B92B04700FF94CF</string>
+				<string>A64518540B935E29009A4CDE</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -626,13 +609,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
-		<string>A671309F0B92B04700FF94CF</string>
-		<string>A67130A00B92B04700FF94CF</string>
-		<string>A671308B0B92B03100FF94CF</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>A671308A0B92B03100FF94CF</string>
-		<string>A69A401A0B89033D00C72E19</string>
 		<string>A67131010B92BFD500FF94CF</string>
 		<string>/Users/darco/Projects/miredo-osx/MiredoPreferencePane/MiredoPreferencePane.xcodeproj</string>
 	</array>

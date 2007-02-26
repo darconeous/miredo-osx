@@ -22,14 +22,11 @@
 - (void) mainViewDidLoad
 {
     AuthorizationItem		_rights[] = {
-//        { kAuthorizationRightExecute, strlen(killall_command_path), killall_command_path, 0 },
-//		kToolRights,
         { "system.preferences" }
     };
     AuthorizationItemSet	rights = { sizeof(*_rights)/sizeof(_rights), _rights };
 
     [comboAuthButton setAuthorizationRights:&rights];
-//    [comboAuthButton setFlags:kAuthorizationFlagInteractionAllowed|kAuthorizationFlagExtendRights];
     [comboAuthButton setDelegate:self];
     [comboAuthButton updateStatus:nil];
     [comboAuthButton setAutoupdate:YES];
@@ -37,12 +34,82 @@
 	EnsureToolInstalled();
 
     settings=[[NSMutableDictionary dictionaryWithCapacity:20] retain];
+
+	redLight=[[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"red" ofType:@"tiff"]];
+	yellowLight=[[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"yellow" ofType:@"tiff"]];
+	greenLight=[[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"green" ofType:@"tiff"]];
+
+	if([self isMiredoEnabled]) {
+		[teredoEnabled setState:NSOnState];
+	} else {
+		[teredoEnabled setState:NSOffState];
+	}
+
     [self readSettings];
+	[self refresh];
+	
+}
+
+- (BOOL)isMiredoRunning {
+	return system("/sbin/ifconfig tun0")==0;
+}
+
+- (BOOL)isMiredoEnabled {
+	CFPropertyListRef propertyList;
+	CFURLRef fileURL;
+	CFDataRef         resourceData;
+	Boolean           status;
+	SInt32            errorCode=0;
+
+	BOOL ret=NO;
+
+	fileURL = CFURLCreateWithFileSystemPath( kCFAllocatorDefault,    
+			   CFSTR("/Library/LaunchDaemons/miredo.plist"),       // file path name
+			   kCFURLPOSIXPathStyle,    // interpret as POSIX path        
+			   false );                 // is it a directory?
+
+	status = CFURLCreateDataAndPropertiesFromResource(
+			   kCFAllocatorDefault,
+			   fileURL,
+			   &resourceData,            // place to put file data
+			   NULL,      
+			   NULL,
+			   &errorCode);
+	require( status==YES, ReadPropertyListFailed);
+	
+	propertyList = CFPropertyListCreateFromXMLData( kCFAllocatorDefault,
+			   resourceData,
+			   kCFPropertyListMutableContainersAndLeaves,
+			   NULL);
+
+	if(!CFDictionaryGetCountOfKey(propertyList,CFSTR("Enabled"))) {
+		ret=YES;
+	} else if(CFDictionaryGetValue(propertyList,CFSTR("Enabled"))==kCFBooleanTrue) {
+		ret=YES;
+	}
+	
+ReadPropertyListFailed:
+	CFRelease(resourceData);
+	CFRelease(fileURL);
+	CFRelease(propertyList);
+	return ret;
+}
+
+- (void) refresh {
+	if([self isMiredoRunning]) {
+		[statusLight setImage:greenLight];
+	} else {
+		[statusLight setImage:redLight];
+	}
+	[currentAddress setStringValue:@"(Unavailable)"];
 }
 
 - (void) dealloc
 {
     [settings release];
+	[redLight release];
+	[yellowLight release];
+	[greenLight release];
     [super dealloc];
 }
 
@@ -224,13 +291,14 @@
 	OSStatus		err = noErr;
 
 	NSLog(@"teredoToggle");
-	
 	switch([teredoEnabled state]) {
 		case NSOnState:
-			err=MiredoStart([[comboAuthButton authorization] authorizationRef]);
+			if(![self isMiredoEnabled])
+				err=MiredoStart([[comboAuthButton authorization] authorizationRef]);
 			break;
 		case NSOffState:
-			err=MiredoStop([[comboAuthButton authorization] authorizationRef]);
+			if([self isMiredoEnabled])
+				err=MiredoStop([[comboAuthButton authorization] authorizationRef]);
 			break;
 		default:
 			break;
@@ -238,8 +306,7 @@
 
     if(err!=noErr) {
         
-        
-        [   [NSAlert
+		[   [NSAlert
                 alertWithError:[NSError
                     errorWithDomain:NSOSStatusErrorDomain
                     code:err
@@ -252,6 +319,8 @@
             contextInfo:NULL
         ];
     }
+	sleep(1);
+	[self refresh];
 }
 
 

@@ -133,6 +133,55 @@ ReadParamsFailed:
 	return result;
 }
 
+static int
+EnableMiredo(BOOL enabled) {
+	CFPropertyListRef propertyList;
+	CFURLRef fileURL;
+	CFDataRef         resourceData;
+	Boolean           status;
+	SInt32            errorCode=0;
+
+
+	fileURL = CFURLCreateWithFileSystemPath( kCFAllocatorDefault,    
+			   CFSTR("/Library/LaunchDaemons/miredo.plist"),       // file path name
+			   kCFURLPOSIXPathStyle,    // interpret as POSIX path        
+			   false );                 // is it a directory?
+
+	status = CFURLCreateDataAndPropertiesFromResource(
+			   kCFAllocatorDefault,
+			   fileURL,
+			   &resourceData,            // place to put file data
+			   NULL,      
+			   NULL,
+			   &errorCode);
+	require( status==YES, ReadPropertyListFailed);
+	
+	propertyList = CFPropertyListCreateFromXMLData( kCFAllocatorDefault,
+			   resourceData,
+			   kCFPropertyListMutableContainersAndLeaves,
+			   NULL);
+
+	CFRelease( resourceData );
+
+	CFDictionarySetValue(propertyList, CFSTR("Enabled"), enabled?kCFBooleanTrue:kCFBooleanFalse);
+
+	resourceData = CFPropertyListCreateXMLData( kCFAllocatorDefault, propertyList );
+
+	// Write the XML data to the file.
+	status = CFURLWriteDataAndPropertiesToResource (
+			   fileURL,                  // URL to use
+			   resourceData,                  // data to write
+			   NULL,   
+			   &errorCode);            
+	require( status==YES, WritePropertyListFailed);
+
+ReadPropertyListFailed:
+WritePropertyListFailed:
+	CFRelease(resourceData);
+	CFRelease(fileURL);
+	CFRelease(propertyList);
+	return errorCode;
+}
 
 int	main( int argc, char **argv)
 /* argv[0] is the exec path; argv[1] is a fd for input data; argv[2]... are operation codes.
@@ -178,13 +227,15 @@ int	main( int argc, char **argv)
 		else if ( 0 == strcmp( "EM", argv[ iArg]))	// Enable miredo
 		{
 			fprintf(stderr,"Starting Miredo...\n");
-			result = system("/bin/launchctl load /Library/LaunchDaemons/miredo.plist");
+			result|=EnableMiredo(YES);
+			result|= system("/bin/launchctl load /Library/LaunchDaemons/miredo.plist");
 		}
         else if ( 0 == strcmp( "DM", argv[ iArg]))	// Disable miredo
 		{
 			fprintf(stderr,"Stopping Miredo...\n");
-			result = system("/bin/launchctl unload /Library/LaunchDaemons/miredo.plist");
+			result |= system("/bin/launchctl unload /Library/LaunchDaemons/miredo.plist");
 			result |= system("/usr/bin/killall -9 miredo");
+			result |= EnableMiredo(NO);
 		}
 		else if ( 0 == strcmp( "RM", argv[ iArg]))	// Restart miredo
 		{

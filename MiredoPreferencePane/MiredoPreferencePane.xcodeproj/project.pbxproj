@@ -26,9 +26,10 @@
 		A68528860B8F96A300051A92 /* PrivilegedOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = A68528840B8F96A300051A92 /* PrivilegedOperations.m */; };
 		A68528870B8F96A300051A92 /* PrivilegedOperations.h in Headers */ = {isa = PBXBuildFile; fileRef = A68528850B8F96A300051A92 /* PrivilegedOperations.h */; };
 		A68529810B8FA26700051A92 /* MiredoConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = A623AC9E0B8AA2FC00BA6ED4 /* MiredoConfig.m */; };
-		A69A3FFD0B88FC1200C72E19 /* inprogress.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A69A3FFA0B88FC1100C72E19 /* inprogress.tiff */; };
-		A69A3FFE0B88FC1200C72E19 /* failure.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A69A3FFB0B88FC1200C72E19 /* failure.tiff */; };
-		A69A3FFF0B88FC1200C72E19 /* success.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A69A3FFC0B88FC1200C72E19 /* success.tiff */; };
+		A69A3FFD0B88FC1200C72E19 /* yellow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A69A3FFA0B88FC1100C72E19 /* yellow.tiff */; };
+		A69A3FFE0B88FC1200C72E19 /* red.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A69A3FFB0B88FC1200C72E19 /* red.tiff */; };
+		A69A3FFF0B88FC1200C72E19 /* green.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A69A3FFC0B88FC1200C72E19 /* green.tiff */; };
+		A6BE23F40B9104BF0018CC3D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6BE23F30B9104BF0018CC3D /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,13 +54,14 @@
 		A623AC9D0B8AA2FC00BA6ED4 /* MiredoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiredoConfig.h; sourceTree = "<group>"; };
 		A623AC9E0B8AA2FC00BA6ED4 /* MiredoConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiredoConfig.m; sourceTree = "<group>"; };
 		A623ADB30B8AE07500BA6ED4 /* miredo-pref-tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "miredo-pref-tool.m"; sourceTree = "<group>"; };
-		A68528030B8F928B00051A92 /* miredo-pref-tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "miredo-pref-tool"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A68528030B8F928B00051A92 /* miredo-pref-tool */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "compiled.mach-o.executable"; path = "miredo-pref-tool"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A68528800B8F95EB00051A92 /* installtool */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = installtool; sourceTree = "<group>"; };
 		A68528840B8F96A300051A92 /* PrivilegedOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivilegedOperations.m; sourceTree = "<group>"; };
 		A68528850B8F96A300051A92 /* PrivilegedOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivilegedOperations.h; sourceTree = "<group>"; };
-		A69A3FFA0B88FC1100C72E19 /* inprogress.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = inprogress.tiff; sourceTree = "<group>"; };
-		A69A3FFB0B88FC1200C72E19 /* failure.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = failure.tiff; sourceTree = "<group>"; };
-		A69A3FFC0B88FC1200C72E19 /* success.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = success.tiff; sourceTree = "<group>"; };
+		A69A3FFA0B88FC1100C72E19 /* yellow.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = yellow.tiff; sourceTree = "<group>"; };
+		A69A3FFB0B88FC1200C72E19 /* red.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = red.tiff; sourceTree = "<group>"; };
+		A69A3FFC0B88FC1200C72E19 /* green.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = green.tiff; sourceTree = "<group>"; };
+		A6BE23F30B9104BF0018CC3D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		F506C035013D953901CA16C8 /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = /System/Library/Frameworks/PreferencePanes.framework; sourceTree = "<absolute>"; };
 		F506C03C013D9D7901CA16C8 /* MiredoPref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiredoPref.h; sourceTree = "<group>"; };
 		F506C03D013D9D7901CA16C8 /* MiredoPref.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiredoPref.m; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				8D202CF30486D31800D8A456 /* Cocoa.framework in Frameworks */,
 				8D202CF40486D31800D8A456 /* PreferencePanes.framework in Frameworks */,
 				A623ABE00B89979300BA6ED4 /* Security.framework in Frameworks */,
+				A6BE23F40B9104BF0018CC3D /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,9 +118,9 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A69A3FFA0B88FC1100C72E19 /* inprogress.tiff */,
-				A69A3FFB0B88FC1200C72E19 /* failure.tiff */,
-				A69A3FFC0B88FC1200C72E19 /* success.tiff */,
+				A69A3FFA0B88FC1100C72E19 /* yellow.tiff */,
+				A69A3FFB0B88FC1200C72E19 /* red.tiff */,
+				A69A3FFC0B88FC1200C72E19 /* green.tiff */,
 				A68528800B8F95EB00051A92 /* installtool */,
 				8D202CF70486D31800D8A456 /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
@@ -141,6 +144,7 @@
 		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A6BE23F30B9104BF0018CC3D /* SystemConfiguration.framework */,
 				A623ABDF0B89979300BA6ED4 /* Security.framework */,
 				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
 				F506C035013D953901CA16C8 /* PreferencePanes.framework */,
@@ -262,9 +266,9 @@
 				8D202CED0486D31800D8A456 /* InfoPlist.strings in Resources */,
 				8D202CEE0486D31800D8A456 /* MiredoPref.tiff in Resources */,
 				8D202CEF0486D31800D8A456 /* MiredoPref.nib in Resources */,
-				A69A3FFD0B88FC1200C72E19 /* inprogress.tiff in Resources */,
-				A69A3FFE0B88FC1200C72E19 /* failure.tiff in Resources */,
-				A69A3FFF0B88FC1200C72E19 /* success.tiff in Resources */,
+				A69A3FFD0B88FC1200C72E19 /* yellow.tiff in Resources */,
+				A69A3FFE0B88FC1200C72E19 /* red.tiff in Resources */,
+				A69A3FFF0B88FC1200C72E19 /* green.tiff in Resources */,
 				A685285C0B8F950600051A92 /* miredo-pref-tool in Resources */,
 				A68528810B8F95EB00051A92 /* installtool in Resources */,
 			);

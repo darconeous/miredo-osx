@@ -17,8 +17,13 @@
     IBOutlet NSButton *teredoEnabled;
     IBOutlet NSButton *applyButton;
     IBOutlet NSButton *revertButton;
+	IBOutlet NSImageView* statusLight;
 
     NSDictionary* settings;
+	
+	NSImage* redLight;
+	NSImage* greenLight;
+	NSImage* yellowLight;
 }
 - (IBAction)apply:(id)sender;
 - (IBAction)revert:(id)sender;
@@ -30,10 +35,13 @@
 - (void)restoreSettings;
 - (void)saveSettings;
 - (void)restartMiredo;
+- (BOOL)isMiredoRunning;
+- (BOOL)isMiredoEnabled;
 
 - (NSDictionary*)currentSettings;
 - (void)setSettings:(NSDictionary*)settings;
 
+- (void) refresh;
 - (void) mainViewDidLoad;
 - (void)authorizationViewDidAuthorize:(SFAuthorizationView *)view;
 - (void)authorizationViewDidDeauthorize:(SFAuthorizationView *)view;

@@ -25,6 +25,7 @@
 	NSImage* greenLight;
 	NSImage* yellowLight;
 }
+- (IBAction)modeChanged:(id)sender;
 - (IBAction)apply:(id)sender;
 - (IBAction)revert:(id)sender;
 - (IBAction)teredoToggle:(id)sender;

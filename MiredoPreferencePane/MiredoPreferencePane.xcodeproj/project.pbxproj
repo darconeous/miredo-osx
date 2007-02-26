@@ -54,7 +54,7 @@
 		A623AC9D0B8AA2FC00BA6ED4 /* MiredoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiredoConfig.h; sourceTree = "<group>"; };
 		A623AC9E0B8AA2FC00BA6ED4 /* MiredoConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiredoConfig.m; sourceTree = "<group>"; };
 		A623ADB30B8AE07500BA6ED4 /* miredo-pref-tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "miredo-pref-tool.m"; sourceTree = "<group>"; };
-		A68528030B8F928B00051A92 /* miredo-pref-tool */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "compiled.mach-o.executable"; path = "miredo-pref-tool"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A68528030B8F928B00051A92 /* miredo-pref-tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "miredo-pref-tool"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A68528800B8F95EB00051A92 /* installtool */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = installtool; sourceTree = "<group>"; };
 		A68528840B8F96A300051A92 /* PrivilegedOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivilegedOperations.m; sourceTree = "<group>"; };
 		A68528850B8F96A300051A92 /* PrivilegedOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivilegedOperations.h; sourceTree = "<group>"; };

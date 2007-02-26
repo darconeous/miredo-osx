@@ -153,6 +153,10 @@ ReadPropertyListFailed:
     [self updateApplyButtonState];
 }
 
+- (IBAction)modeChanged:(id)sender {
+	[self updateApplyButtonState];
+}
+
 - (void)updateApplyButtonState {
     if([settings isEqualToDictionary:[self currentSettings]]) {
         [revertButton setEnabled:NO];

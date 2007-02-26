@@ -185,7 +185,48 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array/>
+	<array>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>A67131010B92BFD500FF94CF</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>route.h</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>A67131020B92BFD500FF94CF</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>route.h</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>A67131050B92BFD500FF94CF</string>
+						<key>history</key>
+						<array>
+							<string>A67131030B92BFD500FF94CF</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {1220, 634}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>70 177 1220 675 0 0 1440 878 </string>
+			</dict>
+		</dict>
+	</array>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -220,6 +261,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -272,8 +315,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>21</integer>
-									<integer>12</integer>
+									<integer>31</integer>
+									<integer>30</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -308,14 +351,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MiredoPref.h</string>
+								<string>MiredoPref.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,11 +364,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MiredoPref.h</string>
+										<string>MiredoPref.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>A67130EA0B92B53E00FF94CF</string>
+										<string>A67131000B92BFD500FF94CF</string>
 										<key>history</key>
 										<array>
 											<string>A623AE3B0B8B63BC00BA6ED4</string>
@@ -347,8 +388,11 @@
 											<string>A6BE24120B91076E0018CC3D</string>
 											<string>A67130BE0B92B22200FF94CF</string>
 											<string>A67130DB0B92B44100FF94CF</string>
-											<string>A67130E50B92B50200FF94CF</string>
-											<string>A67130DC0B92B44100FF94CF</string>
+											<string>A67130F30B92BFD500FF94CF</string>
+											<string>A67130F50B92BFD500FF94CF</string>
+											<string>A67130F70B92BFD500FF94CF</string>
+											<string>A67130F90B92BFD500FF94CF</string>
+											<string>A67130FA0B92BFD500FF94CF</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -385,6 +429,10 @@
 											<string>A67130DF0B92B44100FF94CF</string>
 											<string>A67130E00B92B44100FF94CF</string>
 											<string>A67130E60B92B50200FF94CF</string>
+											<string>A67130FB0B92BFD500FF94CF</string>
+											<string>A67130FC0B92BFD500FF94CF</string>
+											<string>A67130FE0B92BFD500FF94CF</string>
+											<string>A67130FF0B92BFD500FF94CF</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -585,6 +633,7 @@
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>A671308A0B92B03100FF94CF</string>
 		<string>A69A401A0B89033D00C72E19</string>
+		<string>A67131010B92BFD500FF94CF</string>
 		<string>/Users/darco/Projects/miredo-osx/MiredoPreferencePane/MiredoPreferencePane.xcodeproj</string>
 	</array>
 	<key>WindowString</key>

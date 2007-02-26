@@ -134,6 +134,18 @@
 			A67130E60B92B50200FF94CF /* PBXTextBookmark */ = A67130E60B92B50200FF94CF /* PBXTextBookmark */;
 			A67130E70B92B50200FF94CF /* PBXTextBookmark */ = A67130E70B92B50200FF94CF /* PBXTextBookmark */;
 			A67130EA0B92B53E00FF94CF /* PBXTextBookmark */ = A67130EA0B92B53E00FF94CF /* PBXTextBookmark */;
+			A67130F30B92BFD500FF94CF /* PBXTextBookmark */ = A67130F30B92BFD500FF94CF /* PBXTextBookmark */;
+			A67130F50B92BFD500FF94CF /* PBXTextBookmark */ = A67130F50B92BFD500FF94CF /* PBXTextBookmark */;
+			A67130F70B92BFD500FF94CF /* PBXTextBookmark */ = A67130F70B92BFD500FF94CF /* PBXTextBookmark */;
+			A67130F90B92BFD500FF94CF /* PBXTextBookmark */ = A67130F90B92BFD500FF94CF /* PBXTextBookmark */;
+			A67130FA0B92BFD500FF94CF /* PBXTextBookmark */ = A67130FA0B92BFD500FF94CF /* PBXTextBookmark */;
+			A67130FB0B92BFD500FF94CF /* PBXTextBookmark */ = A67130FB0B92BFD500FF94CF /* PBXTextBookmark */;
+			A67130FC0B92BFD500FF94CF /* PBXTextBookmark */ = A67130FC0B92BFD500FF94CF /* PBXTextBookmark */;
+			A67130FE0B92BFD500FF94CF /* PBXTextBookmark */ = A67130FE0B92BFD500FF94CF /* PBXTextBookmark */;
+			A67130FF0B92BFD500FF94CF /* PBXTextBookmark */ = A67130FF0B92BFD500FF94CF /* PBXTextBookmark */;
+			A67131000B92BFD500FF94CF /* PBXTextBookmark */ = A67131000B92BFD500FF94CF /* PBXTextBookmark */;
+			A67131030B92BFD500FF94CF /* PBXBookmark */ = A67131030B92BFD500FF94CF /* PBXBookmark */;
+			A67131050B92BFD500FF94CF /* PBXTextBookmark */ = A67131050B92BFD500FF94CF /* PBXTextBookmark */;
 			A68528CB0B8F99B500051A92 = A68528CB0B8F99B500051A92 /* PBXTextBookmark */;
 			A68528D30B8F99B500051A92 = A68528D30B8F99B500051A92 /* PBXTextBookmark */;
 			A68528D70B8F99B500051A92 = A68528D70B8F99B500051A92 /* PBXTextBookmark */;
@@ -345,7 +357,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* MiredoPref.m */;
 		name = "MiredoPref.m: 281";
 		rLen = 0;
-		rLoc = 8827;
+		rLoc = 8899;
 		rType = 0;
 		vrLen = 869;
 		vrLoc = 6794;
@@ -445,7 +457,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* MiredoPref.m */;
 		name = "MiredoPref.m: 299";
 		rLen = 0;
-		rLoc = 8291;
+		rLoc = 8363;
 		rType = 0;
 		vrLen = 869;
 		vrLoc = 7916;
@@ -455,7 +467,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* MiredoPref.m */;
 		name = "MiredoPref.m: 299";
 		rLen = 0;
-		rLoc = 8291;
+		rLoc = 8363;
 		rType = 0;
 		vrLen = 869;
 		vrLoc = 7916;
@@ -713,7 +725,7 @@
 		fRef = F506C03C013D9D7901CA16C8 /* MiredoPref.h */;
 		name = "MiredoPref.h: isMiredoEnabled";
 		rLen = 0;
-		rLoc = 1086;
+		rLoc = 1122;
 		rType = 0;
 		vrLen = 1181;
 		vrLoc = 230;
@@ -723,10 +735,161 @@
 		fRef = F506C03C013D9D7901CA16C8 /* MiredoPref.h */;
 		name = "MiredoPref.h: revert:";
 		rLen = 0;
-		rLoc = 827;
+		rLoc = 863;
 		rType = 0;
 		vrLen = 1181;
 		vrLoc = 230;
+	};
+	A67130F30B92BFD500FF94CF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A67130F40B92BFD500FF94CF /* tun6.h */;
+		name = "(null): 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1414;
+		vrLoc = 2311;
+	};
+	A67130F40B92BFD500FF94CF /* tun6.h */ = {
+		isa = PBXFileReference;
+		name = tun6.h;
+		path = "/Users/darco/Projects/miredo-osx/miredo/libtun6/tun6.h";
+		sourceTree = "<absolute>";
+	};
+	A67130F50B92BFD500FF94CF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A67130F60B92BFD500FF94CF /* route.h */;
+		name = rt_metrics;
+		rLen = 10;
+		rLoc = 3919;
+		rType = 0;
+		vrLen = 1484;
+		vrLoc = 3365;
+	};
+	A67130F60B92BFD500FF94CF /* route.h */ = {
+		isa = PBXFileReference;
+		name = route.h;
+		path = /Volumes/BellatrixHDLeopard/Developer/SDKs/MacOSX10.5.Internal.sdk/usr/include/net/route.h;
+		sourceTree = "<absolute>";
+	};
+	A67130F70B92BFD500FF94CF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A67130F80B92BFD500FF94CF /* tun6.c */;
+		name = "(null): 644";
+		rLen = 0;
+		rLoc = 15055;
+		rType = 0;
+		vrLen = 1045;
+		vrLoc = 14278;
+	};
+	A67130F80B92BFD500FF94CF /* tun6.c */ = {
+		isa = PBXFileReference;
+		name = tun6.c;
+		path = "/Users/darco/Projects/miredo-osx/miredo/libtun6/tun6.c";
+		sourceTree = "<absolute>";
+	};
+	A67130F90B92BFD500FF94CF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F506C03C013D9D7901CA16C8 /* MiredoPref.h */;
+		name = "MiredoPref.h: modeChanged:";
+		rLen = 0;
+		rLoc = 767;
+		rType = 0;
+		vrLen = 1216;
+		vrLoc = 231;
+	};
+	A67130FA0B92BFD500FF94CF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F506C03D013D9D7901CA16C8 /* MiredoPref.m */;
+		name = "MiredoPref.m: 263";
+		rLen = 0;
+		rLoc = 7101;
+		rType = 0;
+		vrLen = 1512;
+		vrLoc = 6424;
+	};
+	A67130FB0B92BFD500FF94CF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F506C03C013D9D7901CA16C8 /* MiredoPref.h */;
+		name = "MiredoPref.h: revert:";
+		rLen = 0;
+		rLoc = 863;
+		rType = 0;
+		vrLen = 1144;
+		vrLoc = 272;
+	};
+	A67130FC0B92BFD500FF94CF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A67130FD0B92BFD500FF94CF /* tun6.c */;
+		name = "(null): 644";
+		rLen = 0;
+		rLoc = 15055;
+		rType = 0;
+		vrLen = 1045;
+		vrLoc = 14278;
+	};
+	A67130FD0B92BFD500FF94CF /* tun6.c */ = {
+		isa = PBXFileReference;
+		name = tun6.c;
+		path = "/Users/darco/Projects/miredo-osx/miredo/libtun6/tun6.c";
+		sourceTree = "<absolute>";
+	};
+	A67130FE0B92BFD500FF94CF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F506C03D013D9D7901CA16C8 /* MiredoPref.m */;
+		name = "MiredoPref.m: 263";
+		rLen = 0;
+		rLoc = 7101;
+		rType = 0;
+		vrLen = 1512;
+		vrLoc = 6424;
+	};
+	A67130FF0B92BFD500FF94CF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F506C03C013D9D7901CA16C8 /* MiredoPref.h */;
+		name = "MiredoPref.h: modeChanged:";
+		rLen = 0;
+		rLoc = 767;
+		rType = 0;
+		vrLen = 1216;
+		vrLoc = 231;
+	};
+	A67131000B92BFD500FF94CF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F506C03D013D9D7901CA16C8 /* MiredoPref.m */;
+		name = "MiredoPref.m: controlTextDidChange:";
+		rLen = 0;
+		rLoc = 4037;
+		rType = 0;
+		vrLen = 1068;
+		vrLoc = 3723;
+	};
+	A67131030B92BFD500FF94CF /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = A67131040B92BFD500FF94CF /* route.h */;
+	};
+	A67131040B92BFD500FF94CF /* route.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = route.h;
+		path = /Volumes/BellatrixHDLeopard/Developer/SDKs/MacOSX10.5.Internal.sdk/usr/include/net/route.h;
+		sourceTree = "<absolute>";
+	};
+	A67131050B92BFD500FF94CF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A67131060B92BFD500FF94CF /* route.h */;
+		name = "(null): 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1601;
+		vrLoc = 8929;
+	};
+	A67131060B92BFD500FF94CF /* route.h */ = {
+		isa = PBXFileReference;
+		name = route.h;
+		path = /Volumes/BellatrixHDLeopard/Developer/SDKs/MacOSX10.5.Internal.sdk/usr/include/net/route.h;
+		sourceTree = "<absolute>";
 	};
 	A68528020B8F928B00051A92 /* miredo-pref-tool */ = {
 		activeExec = 0;
@@ -1071,7 +1234,7 @@
 		fRef = F506C03C013D9D7901CA16C8 /* MiredoPref.h */;
 		name = "- (void) refresh;";
 		rLen = 18;
-		rLoc = 1169;
+		rLoc = 1205;
 		rType = 0;
 		vrLen = 620;
 		vrLoc = 742;
@@ -1132,7 +1295,7 @@
 		fRef = F506C03C013D9D7901CA16C8 /* MiredoPref.h */;
 		name = "- (BOOL)isMiredoRunning;";
 		rLen = 25;
-		rLoc = 1038;
+		rLoc = 1074;
 		rType = 0;
 		vrLen = 626;
 		vrLoc = 765;
@@ -1152,7 +1315,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* MiredoPref.m */;
 		name = "MiredoPref.m: 271";
 		rLen = 0;
-		rLoc = 8843;
+		rLoc = 8915;
 		rType = 0;
 		vrLen = 457;
 		vrLoc = 6963;
@@ -1162,7 +1325,7 @@
 		fRef = F506C03C013D9D7901CA16C8 /* MiredoPref.h */;
 		name = "MiredoPref.h: mainViewDidLoad";
 		rLen = 0;
-		rLoc = 1187;
+		rLoc = 1223;
 		rType = 0;
 		vrLen = 601;
 		vrLoc = 765;
@@ -1182,7 +1345,7 @@
 		fRef = F506C03C013D9D7901CA16C8 /* MiredoPref.h */;
 		name = "MiredoPref.h: mainViewDidLoad";
 		rLen = 0;
-		rLoc = 1187;
+		rLoc = 1223;
 		rType = 0;
 		vrLen = 624;
 		vrLoc = 742;
@@ -1246,7 +1409,7 @@
 		fRef = F506C03C013D9D7901CA16C8 /* MiredoPref.h */;
 		name = "- (BOOL)isMiredoRunning;";
 		rLen = 25;
-		rLoc = 1038;
+		rLoc = 1074;
 		rType = 0;
 		vrLen = 626;
 		vrLoc = 765;
@@ -1256,24 +1419,24 @@
 		fRef = F506C03D013D9D7901CA16C8 /* MiredoPref.m */;
 		name = "MiredoPref.m: 281";
 		rLen = 0;
-		rLoc = 8827;
+		rLoc = 8899;
 		rType = 0;
 		vrLen = 453;
 		vrLoc = 7210;
 	};
 	F506C03C013D9D7901CA16C8 /* MiredoPref.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {613, 765}}";
-			sepNavSelRange = "{827, 0}";
-			sepNavVisRect = "{{0, 105}, {613, 625}}";
+			sepNavIntBoundsRect = "{{0, 0}, {613, 780}}";
+			sepNavSelRange = "{767, 0}";
+			sepNavVisRect = "{{0, 125}, {613, 625}}";
 			sepNavWindowFrame = "{{49, 198}, {1220, 675}}";
 		};
 	};
 	F506C03D013D9D7901CA16C8 /* MiredoPref.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {993, 4920}}";
-			sepNavSelRange = "{2920, 0}";
-			sepNavVisRect = "{{0, 334}, {613, 625}}";
+			sepNavIntBoundsRect = "{{0, 0}, {993, 4980}}";
+			sepNavSelRange = "{4037, 0}";
+			sepNavVisRect = "{{0, 2172}, {613, 625}}";
 			sepNavWindowFrame = "{{100, -32}, {1220, 675}}";
 		};
 	};

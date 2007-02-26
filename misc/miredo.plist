@@ -2,20 +2,26 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>Label</key>
-    <string>miredo</string>
-    <key>ServiceDescription</key>
-    <string>Teredo IPv6 Interface</string>
-    <key>OnDemand</key>
-    <false/>
-    <key>ProgramArguments</key>
-    <array>
-            <string>/usr/sbin/miredo</string>
-            <string>--foreground</string>
-            <string>-c</string>
-            <string>/etc/miredo.conf</string>
-    </array>
-    <key>ServiceIPC</key>
-    <false/>
+	<key>Disabled</key>
+	<false/>
+	<key>Label</key>
+	<string>miredo</string>
+	<key>Nice</key>
+	<integer>-15</integer>
+	<key>OnDemand</key>
+	<false/>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/sbin/miredo</string>
+		<string>--foreground</string>
+		<string>-c</string>
+		<string>/etc/miredo.conf</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>ServiceDescription</key>
+	<string>Teredo IPv6 Interface</string>
+	<key>ServiceIPC</key>
+	<false/>
 </dict>
 </plist>

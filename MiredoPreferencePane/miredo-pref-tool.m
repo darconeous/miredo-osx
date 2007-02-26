@@ -163,7 +163,7 @@ EnableMiredo(BOOL enabled) {
 
 	CFRelease( resourceData );
 
-	CFDictionarySetValue(propertyList, CFSTR("Enabled"), enabled?kCFBooleanTrue:kCFBooleanFalse);
+	CFDictionarySetValue(propertyList, CFSTR("Disabled"), enabled?kCFBooleanFalse:kCFBooleanTrue);
 
 	resourceData = CFPropertyListCreateXMLData( kCFAllocatorDefault, propertyList );
 

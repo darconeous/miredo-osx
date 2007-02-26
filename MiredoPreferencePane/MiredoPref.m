@@ -82,9 +82,9 @@
 			   kCFPropertyListMutableContainersAndLeaves,
 			   NULL);
 
-	if(!CFDictionaryGetCountOfKey(propertyList,CFSTR("Enabled"))) {
+	if(!CFDictionaryGetCountOfKey(propertyList,CFSTR("Disabled"))) {
 		ret=YES;
-	} else if(CFDictionaryGetValue(propertyList,CFSTR("Enabled"))==kCFBooleanTrue) {
+	} else if(CFDictionaryGetValue(propertyList,CFSTR("Disabled"))==kCFBooleanFalse) {
 		ret=YES;
 	}
 	

@@ -48,7 +48,7 @@
 #include <CoreFoundation/CoreFoundation.h>
 #include <Security/Security.h>
 
-#define	PRIV_OP_TOOL_VERS	5
+#define	PRIV_OP_TOOL_VERS	7
 
 #define	kToolName      "miredo-pref-tool"
 #define	kToolPath      "/Library/Application Support/Miredo/" kToolName

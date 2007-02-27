@@ -114,6 +114,9 @@ miredo-patch:
 
 bootstrap: $(JUDY_SRC_DIR)/configure $(MIREDO_DIR)/configure
 
+miredo-clean:
+	$(RM) -r $(MIREDO_BUILD_X86_DIR) $(MIREDO_BUILD_PPC_DIR)  $(MIREDO_OUT_X86_DIR)  $(MIREDO_OUT_PPC_DIR)
+
 $(MIREDO_DIR)/configure: $(MIREDO_DIR)/configure.ac
 	cd $(MIREDO_DIR) && ./autogen.sh
 	$(CP) $(MISC_DIR)/gettext.h $(MIREDO_DIR)/include/gettext.h
@@ -227,6 +230,7 @@ tarball: $(TARNAME).pkg.tar.gz
 clean:
 	$(RMDIR) $(BUILD_DIR)
 	$(RMDIR) $(TARNAME).pkg
+	$(RMDIR) $(MIREDO_PREF_SRC_DIR)/build
 	$(RM) $(TARNAME).pkg.tar.gz
 	$(RM) $(TARNAME).pkg.zip
 	$(MAKE) -C $(TUNTAP_DIR) clean

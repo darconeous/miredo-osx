@@ -16,6 +16,16 @@
 
 #define DEFAULT_TEREDO_SERVER   @"teredo.remlab.net"
 
+static void miredoSCUpdate(SCDynamicStoreRef store, CFArrayRef changedKeys, void *info)
+{
+	MiredoPref* me=(id)info;
+	
+	[me refresh];
+}
+
+static CFStringRef miredoSCDescribe(const void* info) {
+	return CFSTR("MiredoPref");
+}
 
 @implementation MiredoPref
 
@@ -43,6 +53,40 @@
 		[teredoEnabled setState:NSOnState];
 	} else {
 		[teredoEnabled setState:NSOffState];
+	}
+
+	{
+		SCDynamicStoreContext context={
+			.version=0,
+			.info=(void*)self,
+			.retain=CFRetain,
+			.release=CFRelease,
+			.copyDescription=miredoSCDescribe,
+		};
+		dynamic_store=SCDynamicStoreCreate(
+			NULL,
+			CFSTR("MiredoPref"),
+			miredoSCUpdate,
+			&context
+		);
+		
+		CFRunLoopAddSource(
+			CFRunLoopGetCurrent(),
+			SCDynamicStoreCreateRunLoopSource ( 
+				NULL,
+				dynamic_store, 
+				50
+			),
+			kCFRunLoopCommonModes
+		);
+	
+		if(!SCDynamicStoreSetNotificationKeys ( 
+			dynamic_store, 
+			(CFArrayRef)[NSMutableArray arrayWithObject:@"State:/Network/Interface/tun0/IPv6"], 
+			(CFArrayRef)[NSMutableArray arrayWithObject:@".*"]
+		)) {
+			NSLog(@"Unable to set notification keys!");
+		} 
 	}
 
     [self readSettings];
@@ -97,15 +141,38 @@ ReadPropertyListFailed:
 
 - (void) refresh {
 	if([self isMiredoRunning]) {
-		[statusLight setImage:greenLight];
+		NSString* addr=[self getMiredoAddress];
+		if([addr length]>6 && [[addr substringToIndex:6] isEqual:@"2001::"]) {
+			[statusLight setImage:greenLight];
+		} else {
+			[statusLight setImage:yellowLight];
+		}
+		[currentAddress setStringValue:[self getMiredoAddress]];
 	} else {
 		[statusLight setImage:redLight];
+		[currentAddress setStringValue:@"::"];
 	}
-	[currentAddress setStringValue:@"(Unavailable)"];
+}
+
+- (NSString*)getMiredoAddress {
+	NSDictionary* plist;
+	
+	plist=(NSDictionary*)SCDynamicStoreCopyValue(dynamic_store,CFSTR("State:/Network/Interface/tun0/IPv6"));
+	if(!plist) {
+		return @"::";
+	}
+	[plist autorelease];
+	
+	NSArray* addresses=[plist valueForKey:@"Addresses"];
+	if(!addresses || [addresses count]<3) {
+		return @"::";
+	}
+	return [[plist valueForKey:@"Addresses"] lastObject];
 }
 
 - (void) dealloc
 {
+	CFRelease(dynamic_store);
     [settings release];
 	[redLight release];
 	[yellowLight release];
@@ -323,7 +390,6 @@ ReadPropertyListFailed:
             contextInfo:NULL
         ];
     }
-	sleep(1);
 	[self refresh];
 }
 

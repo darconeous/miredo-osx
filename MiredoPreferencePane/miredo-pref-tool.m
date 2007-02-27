@@ -234,13 +234,15 @@ int	main( int argc, char **argv)
 		{
 			fprintf(stderr,"Stopping Miredo...\n");
 			result |= system("/bin/launchctl unload /Library/LaunchDaemons/miredo.plist");
-			result |= system("/usr/bin/killall -9 miredo");
+			result |= system("/usr/bin/killall miredo");
 			result |= EnableMiredo(NO);
+			sleep(1);
+			system("/usr/bin/killall -9 miredo");
 		}
-		else if ( 0 == strcmp( "RM", argv[ iArg]))	// Restart miredo
+		else if ( 0 == strcmp( "RM", argv[ iArg]))	// Reload miredo
 		{
-			fprintf(stderr,"Restarting Miredo...\n");
-			result = system("/usr/bin/killall -9 miredo");
+			fprintf(stderr,"Reloading Miredo...\n");
+			result = system("/usr/bin/killall -HUP miredo");
 		}
 		else if ( 0 == strcmp( "WC", argv[ iArg]))	// Write Configuration
 		{

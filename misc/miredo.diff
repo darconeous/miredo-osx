@@ -1,3 +1,196 @@
+Index: src/addrwatch.c
+===================================================================
+--- src/addrwatch.c	(revision 1938)
++++ src/addrwatch.c	(working copy)
+@@ -40,23 +40,74 @@
+ #include "miredo.h"
+ #include "addrwatch.h"
+ 
++#ifdef HAS_SYSTEMCONFIGURATION_FRAMEWORK
++#include <SystemConfiguration/SystemConfiguration.h>
++#endif
++
+ struct miredo_addrwatch
+ {
+ 	pthread_t thread;
+ 
+ 	int self_scope;
+-	int if_inet6_fd;
+ 	int pipefd[2];
+ 	bool status;
++#ifdef HAS_SYSTEMCONFIGURATION_FRAMEWORK
++	SCDynamicStoreRef dynamic_store;
++	CFRunLoopSourceRef run_loop_source_ref;
++	CFRunLoopRef	run_loop;
++#else
++	int if_inet6_fd;
++#endif
++
+ };
+ 
++#ifdef HAS_SYSTEMCONFIGURATION_FRAMEWORK
++static void miredoSCUpdate(SCDynamicStoreRef store, CFArrayRef changedKeys, void *info)
++{
++	miredo_addrwatch* me=(miredo_addrwatch*)info;
++	char found=0;
++	CFDictionaryRef plist;
++	plist=SCDynamicStoreCopyValue(store,CFSTR("State:/Network/Global/IPv6"));
++	if(plist) {
++		CFRelease(plist);
++		found=1;
++	} else {
++		found=0;
++	}
++	if(me->status!=found) {
++		if(found)
++			fprintf(stderr,"Native IPv6 connectivity obtained!\n");
++		else 
++			fprintf(stderr,"Native IPv6 connectivity lost!\n");
++		me->status=found;
++		while (write (me->pipefd[1], &found, 1) == 0);
++	}
++}
+ 
++static CFStringRef miredoSCDescribe(const void* info) {
++	return CFSTR("miredo");
++}
++#endif
++
++
+ /**
+  * @return never ever. Thread must be cancelled.
+  */
+ static LIBTEREDO_NORETURN void *addrwatch (void *opaque)
+ {
+ 	struct miredo_addrwatch *data = (struct miredo_addrwatch *)opaque;
++
++#ifdef HAS_SYSTEMCONFIGURATION_FRAMEWORK
++	data->run_loop=CFRunLoopGetCurrent();
++	CFRunLoopAddSource(
++		data->run_loop,
++		data->run_loop_source_ref,
++		kCFRunLoopCommonModes
++	);
++	CFRunLoopRun();
++	fprintf(stderr,"warning: addrwatch exited!\n");
++#else
++
+ 	struct timespec deadline;
+ 
+ 	clockid_t clock_id = CLOCK_REALTIME;
+@@ -72,6 +123,7 @@
+ 		int state;
+ 		pthread_setcancelstate (PTHREAD_CANCEL_DISABLE, &state);
+ 
++
+ 		if (lseek (data->if_inet6_fd, 0, SEEK_SET) == -1)
+ 			goto wait;
+ 
+@@ -107,12 +159,12 @@
+ 			data->status = (found != 0);
+ 			while (write (data->pipefd[1], &found, 1) == 0);
+ 		}
+-
+ 	wait:
+ 		pthread_setcancelstate (state, NULL);
+ 		deadline.tv_sec += 5;
+ 		clock_nanosleep (clock_id, TIMER_ABSTIME, &deadline, NULL);
+ 	}
++#endif
+ 	// dead code
+ }
+ 
+@@ -136,6 +188,60 @@
+ 
+ 	memset (data, 0, sizeof (data));
+ 
++#ifdef HAS_SYSTEMCONFIGURATION_FRAMEWORK
++	fprintf(stderr,"Starting addrwatch...\n");
++	SCDynamicStoreContext context={
++		.version=0,
++		.info=(void*)data,
++		.copyDescription=miredoSCDescribe,
++	};
++
++	data->dynamic_store=SCDynamicStoreCreate(
++		NULL,
++		CFSTR("miredo"),
++		miredoSCUpdate,
++		&context
++	);
++	data->run_loop_source_ref=SCDynamicStoreCreateRunLoopSource ( 
++		NULL, 
++		data->dynamic_store, 
++		0
++	);
++	{
++		CFArrayRef keys;
++		keys=CFArrayCreateMutable(NULL,1,&kCFTypeArrayCallBacks);
++		CFArrayAppendValue(keys,CFSTR("State:/Network/Global/IPv6"));
++		if(!SCDynamicStoreSetNotificationKeys ( 
++			data->dynamic_store, 
++			keys, 
++			NULL
++		)) {
++			fprintf(stderr,"Unable to set notification keys!\n");
++		}
++		CFRelease(keys);
++	}
++
++	data->self_scope = self_scope;
++	{
++		CFDictionaryRef plist;
++		plist=SCDynamicStoreCopyValue(data->dynamic_store,CFSTR("State:/Network/Global/IPv6"));
++		if(plist) {
++			CFRelease(plist);
++			data->status =1;
++		} else {
++			data->status =0;
++		}
++	}
++	if (pipe (data->pipefd) == 0)
++	{
++		miredo_setup_nonblock_fd (data->pipefd[0]);
++		miredo_setup_fd (data->pipefd[1]);
++
++		if (pthread_create (&data->thread, NULL, addrwatch, data) == 0)
++			return data;
++	}
++	fprintf(stderr,"error: addrwatch start failed!\n");
++#else
+ 	int fd = open ("/proc/net/if_inet6", O_RDONLY);
+ 	if (fd != -1)
+ 	{
+@@ -156,6 +262,7 @@
+ 
+ 		(void)close (fd);
+ 	}
++#endif
+ 
+ 	return NULL;
+ }
+@@ -167,12 +274,21 @@
+ {
+ 	assert (data != NULL);
+ 
++#ifdef HAS_SYSTEMCONFIGURATION_FRAMEWORK
++	//CFRunLoopSourceContext context;
++	//CFRunLoopSourceGetContext(data->run_loop_source_ref,&context);
++	//if(context.cancel)context.cancel(context.info);
++	CFRunLoopStop(data->run_loop);
++	CFRelease(data->run_loop_source_ref);
++	CFRelease(data->dynamic_store);
++#else
+ 	(void)pthread_cancel (data->thread);
+ 	(void)pthread_join (data->thread, NULL);
+ 
+ 	(void)close (data->pipefd[1]);
+ 	(void)close (data->pipefd[0]);
+ 	(void)close (data->if_inet6_fd);
++#endif
+ 	free (data);
+ }
+ 
 Index: src/privproc.c
 ===================================================================
 --- src/privproc.c	(revision 1938)
@@ -58,6 +251,24 @@ Index: src/privproc.c
  			}
  
  			/* Saves address */
+Index: src/miredo.c
+===================================================================
+--- src/miredo.c	(revision 1938)
++++ src/miredo.c	(working copy)
+@@ -106,11 +106,13 @@
+ 	}
+ 
+ 	// Definitely drops privileges
++/*
+ 	if (setuid (unpriv_uid))
+ 	{
+ 		syslog (LOG_ALERT, _("Error (%s): %s\n"), "setuid", strerror (errno));
+ 		return -1;
+ 	}
++*/
+ 
+ #ifdef HAVE_LIBCAP
+ 	cap_t s = cap_init ();
 Index: src/relayd.c
 ===================================================================
 --- src/relayd.c	(revision 1938)
@@ -71,7 +282,17 @@ Index: src/relayd.c
  
  static int relay_diagnose (void)
  {
-@@ -240,8 +242,9 @@
+@@ -199,6 +201,9 @@
+ create_dynamic_tunnel (const char *ifname, int *fd)
+ {
+ 	tun6 *tunnel = tun6_create (ifname);
++	if (tunnel == NULL && ifname) {
++		tunnel=tun6_create(NULL);
++	}
+ 	if (tunnel == NULL)
+ 		return NULL;
+ 
+@@ -240,8 +245,9 @@
  		        str, (unsigned)mtu);
  
  	assert (data != NULL);
@@ -82,7 +303,7 @@ Index: src/relayd.c
  }
  
  
-@@ -419,6 +422,9 @@
+@@ -419,6 +425,9 @@
  		syslog (LOG_ALERT, _("Fatal configuration error"));
  		return -2;
  	}
@@ -127,17 +348,39 @@ Index: src/conf.c
  				if ((*nbuf != '#') // comment
  				 && !miredo_conf_set (conf, nbuf, vbuf, line))
  					return false;
+Index: configure.ac
+===================================================================
+--- configure.ac	(revision 1938)
++++ configure.ac	(working copy)
+@@ -218,6 +218,11 @@
+ # Defines for <config.h>
+ AH_BOTTOM([#include "compat/fixups.h"])
+ 
++# These should only be added for apple platforms
++AC_DEFINE(HAS_SYSTEMCONFIGURATION_FRAMEWORK, 1,[Define to 1 if Apple's SystemConfiguration framework is availble.])
++CFLAGS="${CFLAGS} -framework SystemConfiguration"
++AC_DEFINE(HAS_COREFOUNDATION_FRAMEWORK, 1,[Define to 1 if Apple's CoreFoundation framework is availble.])
++CFLAGS="${CFLAGS} -framework CoreFoundation"
+ 
+ # END
+ AS_MESSAGE(writing results...)
 Index: libteredo/maintain.c
 ===================================================================
 --- libteredo/maintain.c	(revision 1938)
 +++ libteredo/maintain.c	(working copy)
-@@ -421,6 +421,9 @@
+@@ -421,6 +421,15 @@
  		{
  			count = 0;
  
 +			if (state == PROBE_SYMMETRIC)
-+				c_state->addr.teredo.client_port = newaddr.teredo.client_port;
-+
++			{
++				if (c_state->addr.teredo.client_port != newaddr.teredo.client_port)
++				{
++					syslog (LOG_WARNING,_("Symmetric NAT detected. IPv6 connectivity will be limited."));
++				}
++				newaddr.teredo.client_port = c_state->addr.teredo.client_port;
++			}
++			
  			if ((c_state->addr.teredo.client_port != newaddr.teredo.client_port)
  			 || (c_state->addr.teredo.client_ip != newaddr.teredo.client_ip))
  			{

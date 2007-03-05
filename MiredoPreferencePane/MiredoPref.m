@@ -48,6 +48,7 @@ static CFStringRef miredoSCDescribe(const void* info) {
 	redLight=[[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"red" ofType:@"tiff"]];
 	yellowLight=[[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"yellow" ofType:@"tiff"]];
 	greenLight=[[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"green" ofType:@"tiff"]];
+	grayLight=[[NSImage alloc] initWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"gray" ofType:@"tiff"]];
 
 	if([self isMiredoEnabled]) {
 		[teredoEnabled setState:NSOnState];
@@ -141,17 +142,32 @@ ReadPropertyListFailed:
 
 - (void) refresh {
 	if([self isMiredoRunning]) {
-		NSString* addr=[self getMiredoAddress];
-		if([addr length]>6 && [[addr substringToIndex:6] isEqual:@"2001::"]) {
-			[statusLight setImage:greenLight];
+		if(![self hasNativeIPv6]) {
+			NSString* addr=[self getMiredoAddress];
+			if([addr length]>6 && [[addr substringToIndex:6] isEqual:@"2001::"]) {
+				[statusLight setImage:greenLight];
+			} else {
+				[statusLight setImage:yellowLight];
+			}
 		} else {
-			[statusLight setImage:yellowLight];
+			[statusLight setImage:grayLight];
 		}
 		[currentAddress setStringValue:[self getMiredoAddress]];
 	} else {
 		[statusLight setImage:redLight];
 		[currentAddress setStringValue:@"::"];
 	}
+}
+
+- (BOOL)hasNativeIPv6 {
+	NSDictionary* plist;
+	
+	plist=(NSDictionary*)SCDynamicStoreCopyValue(dynamic_store,CFSTR("State:/Network/Global/IPv6"));
+	if(!plist) {
+		return NO;
+	}
+	[plist autorelease];
+	return YES;
 }
 
 - (NSString*)getMiredoAddress {

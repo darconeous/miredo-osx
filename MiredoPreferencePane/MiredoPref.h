@@ -24,6 +24,7 @@
 	NSImage* redLight;
 	NSImage* greenLight;
 	NSImage* yellowLight;
+	NSImage* grayLight;
 	SCDynamicStoreRef dynamic_store;
 }
 - (IBAction)modeChanged:(id)sender;
@@ -39,6 +40,7 @@
 - (void)restartMiredo;
 - (BOOL)isMiredoRunning;
 - (BOOL)isMiredoEnabled;
+- (BOOL)hasNativeIPv6;
 - (NSString*)getMiredoAddress;
 
 - (NSDictionary*)currentSettings;

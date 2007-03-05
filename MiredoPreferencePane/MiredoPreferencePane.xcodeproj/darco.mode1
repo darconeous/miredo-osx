@@ -185,48 +185,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>A6A1386B0B949BCA0010686C</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>addrwatch.c</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>A6A1386C0B949BCA0010686C</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>addrwatch.c</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>A610F4240B94A0AC00E247CF</string>
-						<key>history</key>
-						<array>
-							<string>A6A1387A0B949EC40010686C</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {1220, 634}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>66 177 1220 675 0 0 1440 878 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -309,14 +268,17 @@
 								<string>A6BE23F30B9104BF0018CC3D</string>
 								<string>19C28FB8FE9D52D311CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
+								<string>A6AF33E50B97523500EDBA70</string>
+								<string>A6AF33E60B97523500EDBA70</string>
+								<string>089C167DFE841241C02AAC07</string>
 								<string>1C37FAAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>31</integer>
-									<integer>30</integer>
+									<integer>13</integer>
+									<integer>12</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -356,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MiredoPref.m</string>
+								<string>gray.tiff</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -364,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MiredoPref.m</string>
+										<string>gray.tiff</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>A610F4230B94A0AC00E247CF</string>
+										<string>A6AF33FC0B975AF100EDBA70</string>
 										<key>history</key>
 										<array>
 											<string>A623AE3B0B8B63BC00BA6ED4</string>
@@ -379,9 +341,6 @@
 											<string>A69874660B8FB7EE00D51BC4</string>
 											<string>A69874A30B8FD6DD00D51BC4</string>
 											<string>A6BE23690B90FB7C0018CC3D</string>
-											<string>A6BE237A0B90FCFB0018CC3D</string>
-											<string>A6BE237B0B90FCFB0018CC3D</string>
-											<string>A6BE237C0B90FCFB0018CC3D</string>
 											<string>A6BE240E0B91076E0018CC3D</string>
 											<string>A6BE24100B91076E0018CC3D</string>
 											<string>A6BE24120B91076E0018CC3D</string>
@@ -392,10 +351,14 @@
 											<string>A6A138550B949BCA0010686C</string>
 											<string>A6A138570B949BCA0010686C</string>
 											<string>A6A138590B949BCA0010686C</string>
-											<string>A6A1385B0B949BCA0010686C</string>
-											<string>A6A138730B949D280010686C</string>
 											<string>A610F4050B94A03400E247CF</string>
-											<string>A610F4060B94A03400E247CF</string>
+											<string>A6AF33BE0B97500E00EDBA70</string>
+											<string>A6AF33E70B97523500EDBA70</string>
+											<string>A6AF33E80B97523500EDBA70</string>
+											<string>A6AF33E90B97523500EDBA70</string>
+											<string>A6AF33EA0B97523500EDBA70</string>
+											<string>A6AF33EB0B97523500EDBA70</string>
+											<string>A6AF33FB0B975AF100EDBA70</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -420,7 +383,19 @@
 											<string>A6A1385F0B949BCA0010686C</string>
 											<string>A6A138610B949BCA0010686C</string>
 											<string>A6A138630B949BCA0010686C</string>
-											<string>A610F4070B94A03400E247CF</string>
+											<string>A6AF33C00B97500E00EDBA70</string>
+											<string>A6AF33ED0B97523500EDBA70</string>
+											<string>A6AF33EE0B97523500EDBA70</string>
+											<string>A6AF33EF0B97523500EDBA70</string>
+											<string>A6AF33F00B97523500EDBA70</string>
+											<string>A6AF33F10B97523500EDBA70</string>
+											<string>A6AF33F20B97523500EDBA70</string>
+											<string>A6AF33F30B97523500EDBA70</string>
+											<string>A6AF33F40B97523500EDBA70</string>
+											<string>A6AF33F50B97523500EDBA70</string>
+											<string>A6AF33F60B97523500EDBA70</string>
+											<string>A6AF33F70B97523500EDBA70</string>
+											<string>A6AF33F80B97523500EDBA70</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -478,9 +453,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>A610F4090B94A03400E247CF</string>
+				<string>A6AF33C20B97500E00EDBA70</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>A610F40A0B94A03400E247CF</string>
+				<string>A6AF33C30B97500E00EDBA70</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -615,7 +590,6 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>A69A401A0B89033D00C72E19</string>
-		<string>A6A1386B0B949BCA0010686C</string>
 		<string>/Users/darco/Projects/miredo-osx/MiredoPreferencePane/MiredoPreferencePane.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -696,7 +670,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>A69A401A0B89033D00C72E19</string>
-				<string>A610F4250B94A0AC00E247CF</string>
+				<string>A6AF33FA0B97523500EDBA70</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

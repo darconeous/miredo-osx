@@ -1,4 +1,4 @@
-Miredo for OSX Preview 1
+Miredo for OSX Preview 2
 http://www.deepdarc.com/2007/02/21/miredo-osx/
 Packaged by Robert Quattlebaum <darco@deepdarc.com>
 -----------

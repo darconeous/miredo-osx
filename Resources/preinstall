@@ -30,5 +30,18 @@ sudo killall -9 miredo
 	/Applications/Utilities/uninstall-miredo.command
 )
 
+# The previous miredo install added some crap to the PPP scripts
+# This was a bad idea, so we should clean it up if we find it
+# We identify the file by the MD5 hash, so that we can make sure
+# we aren't clobbering someone's real ip-up/ip-down scripts.
+[ `/usr/bin/openssl md5 < /etc/ppp/ip-up` = "329cd89738134b8fbea99be0ab1826ea" ] && (
+	echo Removing /etc/ppp/ip-up
+	sudo rm /etc/ppp/ip-up
+)
+[ `/usr/bin/openssl md5 < /etc/ppp/ip-down` = "329cd89738134b8fbea99be0ab1826ea" ] && (
+	echo Removing /etc/ppp/ip-down
+	sudo rm /etc/ppp/ip-down
+)
+
 
 true;

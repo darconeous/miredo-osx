@@ -1,6 +1,6 @@
 
 
-TARNAME=Miredo-OSX
+TARNAME=miredo-osx-prerelease2
 
 ##### Path Variables
 PREFIX=/usr

@@ -255,20 +255,18 @@ Index: src/miredo.c
 ===================================================================
 --- src/miredo.c	(revision 1938)
 +++ src/miredo.c	(working copy)
-@@ -106,11 +106,13 @@
- 	}
+@@ -235,6 +235,11 @@
+ 				break;
  
- 	// Definitely drops privileges
-+/*
- 	if (setuid (unpriv_uid))
- 	{
- 		syslog (LOG_ALERT, _("Error (%s): %s\n"), "setuid", strerror (errno));
- 		return -1;
- 	}
-+*/
- 
- #ifdef HAVE_LIBCAP
- 	cap_t s = cap_init ();
+ 			case 0:
++				signal(SIGINT,exit);
++				signal(SIGQUIT,exit);
++				signal(SIGTERM,exit);
++				signal(SIGPIPE,exit);
++				signal(SIGHUP,exit);
+ 				close (pidfd);
+ 				retval = miredo_run (cnf, server_name);
+ 				miredo_conf_destroy (cnf);
 Index: src/relayd.c
 ===================================================================
 --- src/relayd.c	(revision 1938)

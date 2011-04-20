@@ -4,3 +4,6 @@
 [submodule "tuntaposx"]
 	path = tuntaposx
 	url = git://tuntaposx.git.sourceforge.net/gitroot/tuntaposx/tuntaposx
+[submodule "libjudy"]
+	path = libjudy
+	url = git://github.com/darconeous/judy.git

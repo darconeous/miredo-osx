@@ -1,3 +1,6 @@
 [submodule "miredo"]
 	path = miredo
 	url = ../miredo
+[submodule "tuntaposx"]
+	path = tuntaposx
+	url = git://tuntaposx.git.sourceforge.net/gitroot/tuntaposx/tuntaposx

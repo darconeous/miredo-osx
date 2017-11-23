@@ -1,3 +1,11 @@
+IMOPORTANT NOTE: This project is NOT under active development
+and should be considered abandonware. Feel free to fork it
+to continue development, or have a look at one of the many
+existing forks to see if anyone else has continued with any
+significant development.
+
+-----------
+
 Miredo for OSX Preview 2
 http://www.deepdarc.com/2007/02/21/miredo-osx/
 Packaged by Robert Quattlebaum <darco@deepdarc.com>
